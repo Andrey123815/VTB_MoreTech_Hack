@@ -1,10 +1,10 @@
 import './App.css'
-import CategoryFilterBlock from "./components/CategoryFilterBlock/CategoryFilterBlock.jsx";
+import ProfilePreviewBanner from "./components/ProfilePreviewBanner/ProfilePreviewBanner.jsx";
 
 function App() {
   return (
     <div className="App">
-      <CategoryFilterBlock />
+      <ProfilePreviewBanner />
     </div>
   )
 }

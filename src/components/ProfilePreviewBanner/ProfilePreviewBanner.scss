@@ -1,0 +1,26 @@
+@use 'src/configurations/theme.scss' as theme;
+
+.profile-preview-banner {
+  display: inline-flex;
+  width: 290px;
+  height: 90px;
+  padding: 13px 20px 17px 20px;
+  background: theme.$avatarBlock;
+  border-radius: 10px;
+  box-shadow: 4px 4px 20px rgba(38, 38, 38, 0.1);
+}
+
+.banner {
+  &__avatar {
+    width: 63px;
+    height: 63px;
+    margin-right: 18px;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
