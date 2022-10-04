@@ -1,10 +1,10 @@
 import './App.css'
-import CategoryFilterTab from "./UI-KIT/CategoryFilterTab/CategoryFilterTab.jsx";
+import CategoryFilterBlock from "./components/CategoryFilterBlock/CategoryFilterBlock.jsx";
 
 function App() {
   return (
     <div className="App">
-      <CategoryFilterTab />
+      <CategoryFilterBlock />
     </div>
   )
 }

@@ -1,6 +1,8 @@
+@use 'src/configurations/theme.scss' as theme;
+
 .category-filter-tab {
   display: flex;
-  background: #E8E8FF;
+  background: theme.$activeFilterTabBackground;
   justify-content: flex-start;
   width: min-content;
   height: 30px;
@@ -14,7 +16,7 @@
     width: 5px;
     height: 100%;
     border-radius: 0 2px 2px 0;
-    background: #5853DD;
+    background: theme.$primary;
     justify-items: center;
   }
   &__filter {

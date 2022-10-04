@@ -5,7 +5,7 @@ function CategoryFilterTab(props) {
   return (
     <section className="category-filter-tab">
       <div className="tab__start-line-mark"></div>
-      <div className="tab__filter">1234</div>
+      <div className="tab__filter">{props.filter}</div>
     </section>
   );
 }
