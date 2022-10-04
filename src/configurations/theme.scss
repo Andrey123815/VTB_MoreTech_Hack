@@ -24,11 +24,11 @@ $_lightTheme: (
   @return $appColors;
 }
 
-$THEME = setThemeColors($_lightTheme);
+$THEME: setThemeColors($_lightTheme);
 
 $primary: map-get($THEME, "primary");
 $avatarBlock: map-get($THEME, "avatarBlock");
-$BotChatBlock: map-get($THEME, "BotChatBlock");
+$BotChatBlock: map-get($THEME, "botChatBlock");
 $slider: map-get($THEME, "slider");
 $innerTasksLabel: map-get($THEME, "innerTasksLabel");
 $countTasksLabel: map-get($THEME, "countTasksLabel");
