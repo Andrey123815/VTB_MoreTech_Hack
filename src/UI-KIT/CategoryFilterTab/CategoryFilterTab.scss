@@ -1,0 +1,26 @@
+.category-filter-tab {
+  display: flex;
+  background: #E8E8FF;
+  justify-content: flex-start;
+  width: min-content;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.tab {
+  &__start-line-mark {
+    width: 5px;
+    height: 100%;
+    border-radius: 0 2px 2px 0;
+    background: #5853DD;
+    justify-items: center;
+  }
+  &__filter {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+  }
+}
+
