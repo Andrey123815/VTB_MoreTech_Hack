@@ -1,0 +1,40 @@
+$_lightTheme: (
+  "primary": #5853DD,
+  "avatarBlock": #F2F2FD,
+  "botChatBlock": #F2F2FD,
+  "slider": #C4F750,
+  "innerTasksLabel": #F9F9FF,
+  "countTasksLabel": #F9F9FF,
+  "tooltip": #7773F1,
+  "userInfoLabel": #FFFFFF,
+);
+
+@function setThemeColors($theme) {
+  $appColors: (
+    "primary": map-get($theme, "primary"),
+    "avatarBlock": map-get($theme, "avatarBlock"),
+    "botChatBlock": map-get($theme, "botChatBlock"),
+    "slider": map-get($theme, "slider"),
+    "innerTasksLabel": map-get($theme, "innerTasksLabel"),
+    "countTasksLabel": map-get($theme, "countTasksLabel"),
+    "tooltip": map-get($theme, "tooltip"),
+    "userInfoLabel": map-get($theme, "userInfoLabel"),
+  );
+
+  @return $appColors;
+}
+
+$THEME = setThemeColors($_lightTheme);
+
+$primary: map-get($THEME, "primary");
+$avatarBlock: map-get($THEME, "avatarBlock");
+$BotChatBlock: map-get($THEME, "BotChatBlock");
+$slider: map-get($THEME, "slider");
+$innerTasksLabel: map-get($THEME, "innerTasksLabel");
+$countTasksLabel: map-get($THEME, "countTasksLabel");
+$tooltip: map-get($THEME, "tooltip");
+$userInfoLabel: map-get($THEME, "userInfoLabel");
+
+//@function getColor($color) {
+//  @return map-get($THEME, $color);
+//}
