@@ -1,8 +1,8 @@
 $_lightTheme: (
   "primary": #5853DD,
   "avatarBlock": #FAFDFF,
-  "botChatBlock": #F2F2FD,
-  "slider": #C4F750,
+  "taskConfirmBlock": #F2F2FD,
+  "userGratitudeBlock": #F2F2FD,
   "innerTasksLabel": #F9F9FF,
   "countTasksLabel": #F9F9FF,
   "tooltip": #7773F1,
@@ -23,6 +23,8 @@ $_lightTheme: (
     "userInfoLabel": map-get($theme, "userInfoLabel"),
     "activeFilterTabBackground": map-get($theme, "activeFilterTabBackground"),
     "teamLeadAvatarBorder": map-get($theme, "teamLeadAvatarBorder"),
+    "taskConfirmBlock": map-get($theme, "taskConfirmBlock"),
+    "userGratitudeBlock": map-get($theme, "userGratitudeBlock"),
   );
 
   @return $appColors;
@@ -40,6 +42,8 @@ $tooltip: map-get($THEME, "tooltip");
 $userInfoLabel: map-get($THEME, "userInfoLabel");
 $activeFilterTabBackground: map-get($THEME, "activeFilterTabBackground");
 $teamLeadAvatarBorder: map-get($THEME, "teamLeadAvatarBorder");
+$taskConfirmBlock: map-get($THEME, "taskConfirmBlock");
+$userGratitudeBlock: map-get($THEME, "userGratitudeBlock");
 
 //@function getColor($color) {
 //  @return map-get($THEME, $color);

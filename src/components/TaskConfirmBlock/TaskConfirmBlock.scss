@@ -1,0 +1,24 @@
+@use 'src/configurations/theme.scss' as theme;
+
+.task-confirm-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 254px;
+  max-height: 70px;
+  height: 120px;
+
+  padding: 25px 20px;
+  background: theme.$taskConfirmBlock;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.task-confirm__data-control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  height: 30px;
+}
