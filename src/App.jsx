@@ -1,10 +1,37 @@
 import './App.css'
-import ProfilePreviewBanner from "./components/ProfilePreviewBanner/ProfilePreviewBanner.jsx";
+import TeamMembersLine from "./components/TeamMembersLine/TeamMembersLine.jsx";
+
+const teamMembers = [
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: true,
+  },
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: false,
+  },
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: false,
+  },
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: false,
+  },
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: false,
+  },
+  {
+    name: "Sergey Ivanov",
+    isTeamLead: false,
+  },
+]
 
 function App() {
   return (
     <div className="App">
-      <ProfilePreviewBanner />
+      <TeamMembersLine teamMembers={teamMembers} />
     </div>
   )
 }

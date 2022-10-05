@@ -8,6 +8,7 @@ $_lightTheme: (
   "tooltip": #7773F1,
   "userInfoLabel": #FFFFFF,
   "activeFilterTabBackground": #E8E8FF,
+  "teamLeadAvatarBorder": #C4F750,
 );
 
 @function setThemeColors($theme) {
@@ -21,6 +22,7 @@ $_lightTheme: (
     "tooltip": map-get($theme, "tooltip"),
     "userInfoLabel": map-get($theme, "userInfoLabel"),
     "activeFilterTabBackground": map-get($theme, "activeFilterTabBackground"),
+    "teamLeadAvatarBorder": map-get($theme, "teamLeadAvatarBorder"),
   );
 
   @return $appColors;
@@ -37,6 +39,7 @@ $countTasksLabel: map-get($THEME, "countTasksLabel");
 $tooltip: map-get($THEME, "tooltip");
 $userInfoLabel: map-get($THEME, "userInfoLabel");
 $activeFilterTabBackground: map-get($THEME, "activeFilterTabBackground");
+$teamLeadAvatarBorder: map-get($THEME, "teamLeadAvatarBorder");
 
 //@function getColor($color) {
 //  @return map-get($THEME, $color);

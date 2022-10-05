@@ -1,0 +1,13 @@
+.team-member {
+  display: inline-block;
+  text-align: center;
+}
+
+.team-members-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 945px;
+  height: 73px;
+}
