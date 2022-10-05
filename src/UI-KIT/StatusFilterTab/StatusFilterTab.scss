@@ -1,0 +1,23 @@
+@use 'src/configurations/theme.scss' as theme;
+
+%basic-status {
+  display: flex;
+  width: max-content;
+  max-height: 30px;
+  border-radius: 5px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.status-filter-tab {
+  @extend %basic-status;
+  background: #FFFFFF;
+  color: theme.$primary;
+  border: 1px solid theme.$primary;
+}
+
+.status-filter-tab_active {
+  @extend %basic-status;
+  background: theme.$primary;
+  color: #FFFFFF;
+}

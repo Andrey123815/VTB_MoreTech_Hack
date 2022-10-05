@@ -4,11 +4,11 @@ import './CategoryFilterTab.scss';
 function CategoryFilterTab(props) {
   return (
     <section
-      className={props.active ? "category-filter-tab active" : "category-filter-tab"}
+      className={props.active ? "category-filter-tab_active" : "category-filter-tab"}
       onClick={props.onClick}
     >
-      <div className="tab__start-line-mark"></div>
-      <div className="tab__filter">{props.filter}</div>
+      <div className="category-tab__line-mark"></div>
+      <div className="category-tab__filter-text">{props.filter}</div>
     </section>
   );
 }

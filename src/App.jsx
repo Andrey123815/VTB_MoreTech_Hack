@@ -1,5 +1,7 @@
 import './App.css'
 import TeamMembersLine from "./components/TeamMembersLine/TeamMembersLine.jsx";
+import CategoryFilterBlock from "./components/CategoryFilterBlock/CategoryFilterBlock.jsx";
+import StatusFilterBlock from "./components/StatusFilterBlock/StatusFilterBlock.jsx";
 
 const teamMembers = [
   {
@@ -31,7 +33,7 @@ const teamMembers = [
 function App() {
   return (
     <div className="App">
-      <TeamMembersLine teamMembers={teamMembers} />
+      <StatusFilterBlock />
     </div>
   )
 }

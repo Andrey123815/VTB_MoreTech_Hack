@@ -1,8 +1,14 @@
-export const FILTERS = [
+export const CATEGORY_FILTERS = [
   'Обучение',
   'Менторинг',
   'Коммуникация',
   'Исследование',
   'Качество',
   'Экспертность',
+];
+
+export const STATUS_FILTERS = [
+  'Новые задания',
+  'В процессе',
+  'Выполнено',
 ];

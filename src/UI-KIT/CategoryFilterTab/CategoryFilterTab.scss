@@ -1,6 +1,6 @@
 @use 'src/configurations/theme.scss' as theme;
 
-.category-filter-tab {
+%basic-category {
   display: flex;
   background: #FFFFFF;
   justify-content: flex-start;
@@ -11,19 +11,28 @@
   cursor: pointer;
 }
 
-.active {
+.category-filter-tab {
+  @extend %basic-category;
+}
+
+.category-filter-tab_active {
+  @extend %basic-category;
   background: theme.$activeFilterTabBackground;
 }
 
-.tab {
-  &__start-line-mark {
+.filter-active {
+  background: theme.$activeFilterTabBackground;
+}
+
+.category-tab {
+  &__line-mark {
     width: 5px;
     height: 100%;
     border-radius: 0 2px 2px 0;
     background: theme.$primary;
     justify-items: center;
   }
-  &__filter {
+  &__filter-text {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
