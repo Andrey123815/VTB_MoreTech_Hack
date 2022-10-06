@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: "server_${NODE_ENV}"
+    image: "server_${NODE_ENV}"
+    environment:
+      - NODE_ENV:${NODE_ENV}
+    build:
+      context: ./server
+      target: "${NODE_ENV}"
+      dockerfile: Dockerfile
+    entrypoint: ["npm", "run", "start:${NODE_ENV}"]
+    env_file:
+      - .env
+    ports:
+      - 9229:9229
+    depends_on:
+      - postgres
+    networks:
+      - todo-network
+    volumes:
+      - ./server:/usr/src/server
+      - /usr/src/server/node_modules
+    restart: unless-stopped
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    networks:
+      - todo-network
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: "${POSTGRES_DB}"
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_DB_PORT}:${POSTGRES_DB_PORT}
+    volumes:
+      - /var/lib/postgresql/data
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - NGINX_PORT=${NGINX_PORT}
+      - BACKEND_PORT=${BACKEND_PORT}
+    ports:
+      - 80:${NGINX_PORT}
+    depends_on:
+      - server
+      - postgres
+    networks:
+      - todo-network
+networks:
+  todo-network:

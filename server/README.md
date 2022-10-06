@@ -71,3 +71,128 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## API
+
+```js
+// 1) login    /login  POST
+
+const loginRequest = {
+    login: 'login',
+    password: 'password'
+}
+
+const loginResponse = {
+    accessToken: 'safbaesrgsergaewvyes5gtwa4y',
+    user: {
+        fullName: 'Иван Вяземский',
+        team: 'Team',
+        specialization: 'Back',
+        grade: 'Middle',
+        role: '',
+        coinsAmount: 234,
+        listingCoinsAmount: 324,
+        avatarSrc: 'url',
+        features: {
+            communication: 12,
+            responsiveness: 12, 
+            leadership: 12, 
+            expertise: 12,             
+            workQuality: 12, 
+            toxicity: 12, 
+        }
+    }
+}
+
+// 3) getCountTasksInProgress    /tasks/progress  GET
+
+const getCountTasksInProgressResponse = {
+    countTasksInProgress: 4,
+    countTasksCompleted: 34
+}
+
+// 4) /tasks/view-completed POST
+
+
+// 4) getTasks    /tasks?category='communication'&status='done'  GET
+
+const getTasksResponse = [
+    {
+        id: 223,
+        title: 'Title',
+        description: 'Description',
+        rewardCoins: 34,
+        feature: 'leadership',
+        rewardFeature: 34,
+    }
+]
+
+// 5) getTeamMembers    /team/Sanvi  GET
+
+const getTeamMembersResponse = [
+    {
+        fullName: 'Иван Вяземский',
+        team: 'Team',
+        specialization: 'Back',
+        grade: 'Middle',
+        role: '',
+        avatarSrc: 'url',
+        features: {
+            communication: 12,
+            responsiveness: 12, 
+            leadership: 12, 
+            expertise: 12,             
+            workQuality: 12, 
+            toxicity: 12, 
+        }
+    }
+]
+
+// 6) confirmTask   /tasks/confirm  POST 
+
+const confirmTaskRequest = { taskId: string }
+
+// 7) createTask    /tasks/create   POST
+
+const createTaskRequest = {
+    title: 'Title',
+    description: 'Description',
+    rewardCoins: 34,
+    featureId: 34,
+    rewardFeature: 34,
+}
+
+// 8) getFeatures     /features GET
+
+const getFeaturesResponse = [
+    {
+        id: 34,
+        title: 'Title'
+    }
+]
+
+// 8) sendBonus   /bonus   POST
+
+const sendBonusRequest = {
+    userId: 4353,
+    type: 'coin' | 'feature',
+    featureId?: 44,
+    amount: 13 | 1
+}
+
+// 9) admin     /admin/refill-coins/status GET
+
+const refillCoinsStatusResponse = {
+    nextRefillDate: 3245123,
+    isAutomatic: true,
+    prevRefillAmount: 32423
+}
+
+// 9) admin     /admin/refill-coins POST
+
+const refillCoinsRequest = {
+    amount: 3423,
+    isAutomatic: true,
+}
+
+```
