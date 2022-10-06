@@ -2,6 +2,7 @@ import './App.css'
 import CustomInput from "./UI-KIT/CustomInput/CustomInput.jsx";
 import {INPUT_SETTINGS} from "./configurations/inputs.js";
 import TaskConfirmBlock from "./components/TaskConfirmBlock/TaskConfirmBlock.jsx";
+import UserGratitudeBlock from "./components/UserGratitudeBlock/UserGratitudeBlock.jsx";
 
 const teamMembers = [
   {
@@ -33,7 +34,7 @@ const teamMembers = [
 function App() {
   return (
     <div className="App">
-      <TaskConfirmBlock />
+      <UserGratitudeBlock />
     </div>
   )
 }

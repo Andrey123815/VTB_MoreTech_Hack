@@ -1,0 +1,52 @@
+@use 'src/configurations/theme' as theme;
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-gratitude-block {
+  @extend %flex-column;
+
+  width: 295px;
+  height: 190px;
+  border-radius: 15px;
+  background: theme.$userGratitudeBlock;
+  text-align: left;
+  padding: 20px 20px 26px 20px;
+
+  &__header-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  &__user-choice {
+    @extend %flex-column;
+
+    width: 255px;
+    height: 60px;
+  }
+  &__control-line {
+    @extend %flex-row;
+  }
+}
+
+.user-choice__header {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.control-line {
+  &__currency-section {
+    @extend %flex-row;
+
+    width: 120px;
+    height: 28px;
+  }
+}
