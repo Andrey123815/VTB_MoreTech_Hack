@@ -11,6 +11,9 @@ $_lightTheme: (
   "teamLeadAvatarBorder": #C4F750,
   "isDoneTaskCounter": #C4F750,
   "inProcessTaskCounter": #EAF750,
+  "hrLine": #9A9AFA,
+  "progressBar": #D9D9D9,
+  "progressLine": #C4F750
 );
 
 @function setThemeColors($theme) {
@@ -29,6 +32,9 @@ $_lightTheme: (
     "userGratitudeBlock": map-get($theme, "userGratitudeBlock"),
     "isDoneTaskCounter": map-get($theme, "isDoneTaskCounter"),
     "inProcessTaskCounter": map-get($theme, "inProcessTaskCounter"),
+    "hrLine": map-get($theme, "hrLine"),
+    "progressBar": map-get($theme, "progressBar"),
+    "progressLine": map-get($theme, "progressLine")
   );
 
   @return $appColors;
@@ -50,6 +56,9 @@ $taskConfirmBlock: map-get($THEME, "taskConfirmBlock");
 $userGratitudeBlock: map-get($THEME, "userGratitudeBlock");
 $isDoneTaskCounter: map-get($THEME, "isDoneTaskCounter");
 $inProcessTaskCounter: map-get($THEME, "inProcessTaskCounter");
+$hrLine: map-get($THEME, "hrLine");
+$progressBar: map-get($THEME, "progressBar");
+$progressLine: map-get($THEME, "progressLine");
 
 //@function getColor($color) {
 //  @return map-get($THEME, $color);

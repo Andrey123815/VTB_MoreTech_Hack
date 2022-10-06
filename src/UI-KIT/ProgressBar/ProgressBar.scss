@@ -1,0 +1,21 @@
+@use 'src/configurations/theme' as theme;
+
+figure {
+  all: unset;
+}
+
+.progress-bar {
+  width: 100px;
+  height: 5px;
+  border-radius: 2px;
+  background: grey;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  &__progress-line {
+    background: #C4F750;
+    border-radius: 2px;
+    height: 5px;
+  }
+}

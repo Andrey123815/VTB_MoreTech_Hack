@@ -1,11 +1,11 @@
 import './App.css'
-import CustomInput from "./UI-KIT/CustomInput/CustomInput.jsx";
-import {INPUT_SETTINGS} from "./configurations/inputs.js";
-import TaskConfirmBlock from "./components/TaskConfirmBlock/TaskConfirmBlock.jsx";
-import UserGratitudeBlock from "./components/UserGratitudeBlock/UserGratitudeBlock.jsx";
-import TasksCounter from "./UI-KIT/TasksCounter/TasksCounter.jsx";
-import StatusFilterBlock from "./components/StatusFilterBlock/StatusFilterBlock.jsx";
-import CategoryFilterBlock from "./components/CategoryFilterBlock/CategoryFilterBlock.jsx";
+import Popup from "./UI-KIT/Popup/Popup.jsx";
+import CurrencyBalance from "./UI-KIT/CurrencyBalance/CurrencyBalance.jsx";
+import ProfileCard from "./components/ProfileCard/ProfileCard.jsx";
+import ProfilePreviewBanner from "./components/ProfilePreviewBanner/ProfilePreviewBanner.jsx";
+import UserInfoSection from "./UI-KIT/UserInfoSection/UserInfoSection.jsx";
+import ProgressBar from "./UI-KIT/ProgressBar/ProgressBar.jsx";
+import SingleCharacteristic from "./UI-KIT/SingleCharacteristic/SingleCharacteristic.jsx";
 
 const teamMembers = [
   {
@@ -37,7 +37,7 @@ const teamMembers = [
 function App() {
   return (
     <div className="App">
-      <CategoryFilterBlock />
+      <ProfileCard />
     </div>
   )
 }
