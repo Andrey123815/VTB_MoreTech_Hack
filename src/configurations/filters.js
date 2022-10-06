@@ -1,14 +1,14 @@
 export const CATEGORY_FILTERS = [
-  'Обучение',
-  'Менторинг',
-  'Коммуникация',
-  'Исследование',
-  'Качество',
-  'Экспертность',
+  {type: 'education', description: 'Обучение'},
+  {type: 'mentoring', description: 'Менторинг'},
+  {type: 'communication', description: 'Коммуникация'},
+  {type: 'research', description: 'Исследование'},
+  {type: 'quality', description: 'Качество'},
+  {type: 'expertise', description: 'Экспертность'},
 ];
 
 export const STATUS_FILTERS = [
-  'Новые задания',
-  'В процессе',
-  'Выполнено',
+  {type: 'new', description: 'Новые задания'},
+  {type: 'inProcess', description: 'В процессе'},
+  {type: 'done', description: 'Выполнено'},
 ];

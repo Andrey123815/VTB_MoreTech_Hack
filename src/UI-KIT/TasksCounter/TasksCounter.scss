@@ -1,0 +1,27 @@
+@use 'src/configurations/theme' as theme;
+
+%counter {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  color: theme.$primary;
+  margin-left: 63px;
+  margin-top: -18px;
+}
+
+.tasks-counter {
+  &__count {
+    top: 17%;
+    position: relative;
+  }
+
+  &_task-done {
+    @extend %counter;
+    background: theme.$isDoneTaskCounter;
+  }
+  &_task-in-process {
+    @extend %counter;
+    background: theme.$inProcessTaskCounter;
+  }
+}

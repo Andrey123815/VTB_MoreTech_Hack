@@ -3,18 +3,25 @@ import './StatusFilterBlock.scss';
 import StatusFilterTab from "../../UI-KIT/StatusFilterTab/StatusFilterTab.jsx";
 import {STATUS_FILTERS} from "../../configurations/filters.js";
 
-const initFilter = 'Новые задания';
+const initFilterType = 'new';
+
+const tasksCountFromBackend = {
+  inProcess: 2,
+  done: 0
+}
 
 function StatusFilterBlock() {
-  const [currFilter, setCurrFilter] = useState(initFilter);
+  const [currFilterType, setCurrFilterType] = useState(initFilterType);
   return (
-    <div className="category-filter-block">
-      {STATUS_FILTERS.map(filter =>
+    <div className="status-filter-block">
+      {STATUS_FILTERS.map(({type, description}) =>
         <StatusFilterTab
-          key={filter}
-          filter={filter}
-          active={filter === currFilter}
-          onClick={() => setCurrFilter(filter)}
+          key={type}
+          type={type}
+          count={tasksCountFromBackend[type]}
+          filterText={description}
+          active={type === currFilterType}
+          onClick={() => setCurrFilterType(type)}
         />
       )}
     </div>

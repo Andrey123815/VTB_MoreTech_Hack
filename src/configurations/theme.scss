@@ -9,6 +9,8 @@ $_lightTheme: (
   "userInfoLabel": #FFFFFF,
   "activeFilterTabBackground": #E8E8FF,
   "teamLeadAvatarBorder": #C4F750,
+  "isDoneTaskCounter": #C4F750,
+  "inProcessTaskCounter": #EAF750,
 );
 
 @function setThemeColors($theme) {
@@ -25,6 +27,8 @@ $_lightTheme: (
     "teamLeadAvatarBorder": map-get($theme, "teamLeadAvatarBorder"),
     "taskConfirmBlock": map-get($theme, "taskConfirmBlock"),
     "userGratitudeBlock": map-get($theme, "userGratitudeBlock"),
+    "isDoneTaskCounter": map-get($theme, "isDoneTaskCounter"),
+    "inProcessTaskCounter": map-get($theme, "inProcessTaskCounter"),
   );
 
   @return $appColors;
@@ -44,6 +48,8 @@ $activeFilterTabBackground: map-get($THEME, "activeFilterTabBackground");
 $teamLeadAvatarBorder: map-get($THEME, "teamLeadAvatarBorder");
 $taskConfirmBlock: map-get($THEME, "taskConfirmBlock");
 $userGratitudeBlock: map-get($THEME, "userGratitudeBlock");
+$isDoneTaskCounter: map-get($THEME, "isDoneTaskCounter");
+$inProcessTaskCounter: map-get($THEME, "inProcessTaskCounter");
 
 //@function getColor($color) {
 //  @return map-get($THEME, $color);

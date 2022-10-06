@@ -8,7 +8,7 @@ function CategoryFilterTab(props) {
       onClick={props.onClick}
     >
       <div className="category-tab__line-mark"></div>
-      <div className="category-tab__filter-text">{props.filter}</div>
+      <div className="category-tab__filter-text">{props.filterText}</div>
     </section>
   );
 }
