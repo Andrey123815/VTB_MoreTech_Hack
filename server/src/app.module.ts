@@ -9,19 +9,15 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { FeaturesModule } from './features/features.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      useFactory: async () =>
-        Object.assign(await getConnectionOptions(), {
-          autoLoadEntities: true,
-        }),
-    }),
     TasksModule,
     UsersModule,
     AuthModule,
     FeaturesModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [

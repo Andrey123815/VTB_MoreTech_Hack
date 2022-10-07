@@ -1,4 +1,4 @@
-import { User } from 'src/users/enities/user.entity';
+import { User } from '../../users/enities/user.entity';
 import { PrimaryColumn, Column, Entity, ManyToOne } from 'typeorm';
 import { Feature } from './feature.entity';
 

@@ -1,4 +1,4 @@
-import { Feature } from 'src/features/entities/feature.entity';
+import { Feature } from '../../features/entities/feature.entity';
 import {
   Entity,
   Column,

@@ -1,5 +1,5 @@
-import { UserFeature } from 'src/features/entities/user-feature.entity';
-import { UserTask } from 'src/tasks/entities/user-task.entity';
+import { UserFeature } from '../../features/entities/user-feature.entity';
+import { UserTask } from '../../tasks/entities/user-task.entity';
 import {
   Entity,
   Column,
