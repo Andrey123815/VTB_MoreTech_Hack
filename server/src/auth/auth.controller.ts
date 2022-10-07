@@ -1,5 +1,4 @@
-import { Controller, Post, UseGuards, Request, Body } from '@nestjs/common';
-import { UserDto as UserDto } from 'src/users/user.dto';
+import { Controller, Post, UseGuards, Request } from '@nestjs/common';
 import { AllowAnon } from './allow-anon.decorator';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -13,11 +12,5 @@ export class AuthController {
   @Post('login')
   async login(@Request() req) {
     return this.authService.auth(req.user);
-  }
-
-  @AllowAnon()
-  @Post('register')
-  async register(@Body() userDto: UserDto) {
-    return this.authService.register(userDto);
   }
 }
