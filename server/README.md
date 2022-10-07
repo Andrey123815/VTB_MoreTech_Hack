@@ -93,6 +93,7 @@ const loginResponse = {
         coinsAmount: 234,
         listingCoinsAmount: 324,
         avatarSrc: 'url',
+        teamIconSrc: 'ewcfcw',
         features: {
             communication: 12,
             responsiveness: 12, 
@@ -137,6 +138,7 @@ const getTeamMembersResponse = [
         grade: 'Middle',
         role: '',
         avatarSrc: 'url',
+        teamIconSrc: 'ewcfcw',
         features: {
             communication: 12,
             responsiveness: 12, 
@@ -168,6 +170,7 @@ const getFeaturesResponse = [
     {
         id: 34,
         title: 'Title'
+        iconSrc: 'ewcfcw'
     }
 ]
 

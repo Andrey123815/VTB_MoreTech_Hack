@@ -1,18 +1,21 @@
 import { User } from 'src/users/enities/user.entity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { PrimaryColumn, Column, Entity, ManyToOne } from 'typeorm';
 import { Feature } from './feature.entity';
 
 @Entity({ name: 'users_features' })
 export class UserFeature {
-  @Column()
+  @PrimaryColumn()
   userId: number;
 
-  @Column()
+  @PrimaryColumn()
   featureId: number;
 
-  @ManyToOne(() => Feature, (feature) => feature.userFeature)
+  @ManyToOne(() => Feature, (feature) => feature.userFeatures)
   feature: Feature;
 
-  @ManyToOne(() => User, (user) => user.userFeature)
+  @ManyToOne(() => User, (user) => user.userFeatures)
   user: User;
+
+  @Column('int')
+  score: number;
 }

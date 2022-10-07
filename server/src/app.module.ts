@@ -8,7 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { AttributesModule } from './attributes/attributes.module';
+import { FeaturesModule } from './features/features.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { AttributesModule } from './attributes/attributes.module';
     TasksModule,
     UsersModule,
     AuthModule,
-    AttributesModule,
+    FeaturesModule,
   ],
   controllers: [AppController],
   providers: [

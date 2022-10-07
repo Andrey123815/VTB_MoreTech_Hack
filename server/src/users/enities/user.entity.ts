@@ -1,5 +1,13 @@
 import { UserFeature } from 'src/features/entities/user-feature.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { UserTask } from 'src/tasks/entities/user-task.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
+import { Team } from './team.entity';
 
 const LISTED_COINS_PER_MONTH = 100;
 
@@ -36,6 +44,9 @@ export class User {
   })
   role: UserRole;
 
+  @ManyToOne(() => Team, (team) => team.users)
+  team: Team;
+
   @Column({ type: 'int', default: 0 })
   coinsAmount: number;
 
@@ -45,6 +56,9 @@ export class User {
   @Column()
   avatarSrc: string;
 
-  @OneToMany(() => UserFeature, (userFeature) => userFeature.feature)
-  userFeature: UserFeature[];
+  @OneToMany(() => UserFeature, (userFeature) => userFeature.user)
+  userFeatures: UserFeature[];
+
+  @OneToMany(() => UserTask, (userTask) => userTask.user)
+  userTasks: UserTask[];
 }
