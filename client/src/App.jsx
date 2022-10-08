@@ -6,7 +6,7 @@ import ProfilePopup from "./components/ProfilePopup/ProfilePopup.jsx";
 function App() {
   return (
     <div className="App">
-      <ProfilePopup />
+      <Home />
     </div>
   )
 }
