@@ -7,6 +7,7 @@ import { Task } from './src/tasks/entities/task.entity';
 import { UserTask } from './src/tasks/entities/user-task.entity';
 import { Feature } from './src/features/entities/feature.entity';
 import { UserFeature } from './src/features/entities/user-feature.entity';
+import { Wallet } from './src/blockchain/entities/wallet.entity';
 
 config();
 
@@ -19,7 +20,7 @@ export default new DataSource({
   username: configService.get('POSTGRES_USER'),
   password: configService.get('POSTGRES_PASSWORD'),
   database: configService.get('POSTGRES_DB'),
-  entities: [User, Team, Task, UserTask, Feature, UserFeature],
+  entities: [User, Team, Task, UserTask, Feature, UserFeature, Wallet],
 
   // We are using migrations, synchronize should be set to false.
   synchronize: false,

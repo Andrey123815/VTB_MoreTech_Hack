@@ -9,15 +9,19 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { FeaturesModule } from './features/features.module';
 import { DatabaseModule } from './database/database.module';
+import { AdminModule } from './admin/admin.module';
+import { BlockchainModule } from './blockchain/blockchain.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TasksModule,
+    BlockchainModule,
     UsersModule,
     AuthModule,
     FeaturesModule,
     DatabaseModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [

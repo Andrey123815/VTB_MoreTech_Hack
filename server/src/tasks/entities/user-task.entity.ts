@@ -30,4 +30,16 @@ export class UserTask {
     default: TaskCompletionStatus.IN_PROGRESS,
   })
   completionStatus: TaskCompletionStatus;
+
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: number;
+
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  doneAt: number;
 }

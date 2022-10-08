@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { ALLOW_ANON_KEY } from '../allow-anon.decorator';
+import { User, UserRole } from 'src/users/enities/user.entity';
+import { ALLOW_ANON_KEY } from '../decorators/allow-anon.decorator';
+import { ONLY_ADMIN_KEY } from '../decorators/only-admin.decorator';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -9,7 +12,8 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     super();
   }
 
-  canActivate(context: ExecutionContext) {
+  // @ts-ignore
+  async canActivate(context: ExecutionContext) {
     const allowAnon = this.reflector.getAllAndOverride<boolean>(
       ALLOW_ANON_KEY,
       [context.getHandler(), context.getClass()],
@@ -19,6 +23,20 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       return true;
     }
 
-    return super.canActivate(context);
+    const superResult = await super.canActivate(context);
+
+    const onlyAdmin = this.reflector.getAllAndOverride<boolean>(
+      ONLY_ADMIN_KEY,
+      [context.getHandler(), context.getClass()],
+    );
+
+    const request = context.switchToHttp().getRequest();
+    const user: User = request.user;
+
+    if (onlyAdmin) {
+      return superResult && user.role === UserRole.ADMIN;
+    }
+
+    return superResult;
   }
 }

@@ -6,8 +6,10 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import { UserTask } from './user-task.entity';
+import { User } from '../../users/enities/user.entity';
 
 export enum TaskCreationStatus {
   CREATED = 'created',
@@ -48,4 +50,13 @@ export class Task {
     default: TaskCreationStatus.IN_MODERATION,
   })
   creationStatus: TaskCreationStatus;
+
+  @ManyToOne(() => User, (team) => team.createdTasks)
+  creator: User;
+
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: number;
 }
