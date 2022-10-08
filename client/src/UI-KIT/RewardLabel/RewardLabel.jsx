@@ -10,7 +10,7 @@ function RewardLabel(props) {
   const logoStyles = props.size === 'large'
     ? REWARD_ICONS.large
     : REWARD_ICONS.small[['lvl', 'nft'].includes(props.reward) ? props.reward : 'other'];
-  const fontStyles = props.size === 'large' || props.reward === 'lvl' ? {fontSize: '14px'} : {fontSize: '10px'};
+  const fontStyles = props.size === 'large' ? {fontSize: '14px'} : {fontSize: '10px'};
 
   return (
     <div className={`reward-label_${props.size}`}>

@@ -31,5 +31,6 @@
 }
 
 .data-control__input-block {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
 }
