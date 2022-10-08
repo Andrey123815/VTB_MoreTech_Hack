@@ -7,7 +7,7 @@ function CurrencyBalance() {
   return (
     <div className="currency-balance">
       {BALANCE_LINE_FEATURES.map(({rewardType, reward, rewardAmount}) =>
-        <RewardLabel key={reward} rewardType={rewardType} reward={reward} rewardAmount={rewardAmount}/>
+        <RewardLabel key={reward} rewardType={rewardType} reward={reward} rewardAmount={rewardAmount} size='small'/>
       )}
     </div>
   );

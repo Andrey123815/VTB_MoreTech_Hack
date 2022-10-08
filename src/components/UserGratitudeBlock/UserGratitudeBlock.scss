@@ -16,13 +16,13 @@
   @extend %flex-column;
 
   width: 294px;
-  height: 190px;
+  height: 265px;
   box-sizing: border-box;
 
   border-radius: 15px;
   background: theme.$userGratitudeBlock;
   text-align: left;
-  padding: 20px 20px 26px 20px;
+  padding: 25px 20px;
 
   &__header-text {
     font-size: 16px;
@@ -30,13 +30,25 @@
   }
   &__user-choice {
     @extend %flex-column;
-
     width: 255px;
     height: 60px;
   }
+  &__bonus-choice {
+    @extend %flex-column;
+    width: 250px;
+    height: 60px;
+
+  }
   &__control-line {
     @extend %flex-row;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
   }
+}
+
+.user-gratitude-block__control-line .auto-complete-input {
+  position: relative;
 }
 
 .user-choice__header {
@@ -51,4 +63,10 @@
     width: 120px;
     height: 28px;
   }
+}
+
+.send-bonus-block {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
 }
