@@ -1,0 +1,38 @@
+.tasks-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 955px;
+  height: 560px;
+  box-sizing: border-box;
+
+  padding-top: 22px;
+  padding-right: 50px;
+  box-shadow: 4px 4px 20px rgba(81, 81, 81, 0.1);
+  border-radius: 15px;
+
+  &__up-line {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-left: 125px;
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 770px;
+  }
+}
+
+.tasks {
+  &__tasks_items {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 780px;
+  }
+}

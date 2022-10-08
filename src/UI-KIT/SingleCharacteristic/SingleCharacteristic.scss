@@ -9,7 +9,7 @@
   width: 140px;
   height: 45px;
 
-  &__name {
+  &__info {
     font-size: 12px;
     font-weight: 500;
     color: #222222;
@@ -20,6 +20,12 @@
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.info__avatar {
+  position: relative;
+  top: 6px;
+  left: 5px
 }
 
 .graphic-block__progress-score {

@@ -7,7 +7,7 @@ const initFilterType = 'new';
 
 const tasksCountFromBackend = {
   inProcess: 2,
-  done: 0
+  done: 3
 }
 
 function StatusFilterBlock() {

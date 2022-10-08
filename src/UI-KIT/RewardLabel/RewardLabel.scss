@@ -1,11 +1,22 @@
-.reward-label {
+.reward-label_large {
+  display: inline-flex;
+  height: 28px;
+  background: #F9F9FF;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 5px;
+}
+
+.reward-label_small {
   display: inline-flex;
   height: 20px;
+}
 
-  &__money-amount {
-    margin-left: 5px;
-    &__money-amount {
-      margin-left: 5px;
-    }
-  }
+.reward-label__reward-logo, .reward-label__money-amount {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reward-label__money-amount {
+  margin-left: 5px;
 }

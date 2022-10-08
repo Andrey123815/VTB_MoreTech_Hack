@@ -1,4 +1,5 @@
 export const CATEGORY_FILTERS = [
+  {type: 'all', description: 'Все'},
   {type: 'education', description: 'Обучение'},
   {type: 'mentoring', description: 'Менторинг'},
   {type: 'communication', description: 'Коммуникация'},

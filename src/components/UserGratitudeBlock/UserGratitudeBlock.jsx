@@ -15,7 +15,7 @@ function UserGratitudeBlock() {
       </div>
       <div className="user-gratitude-block__control-line">
         <span className="control-line__currency-section">
-          <img src="/currencies/crystal.svg" alt="currency image" />
+          <img src="/currencies/ruble.svg" alt="currency image" />
         <CustomInput settings={INPUT_SETTINGS.cashReward}/>
         </span>
         <Button>Поблагодарить</Button>

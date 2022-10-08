@@ -15,8 +15,10 @@
 .user-gratitude-block {
   @extend %flex-column;
 
-  width: 295px;
+  width: 294px;
   height: 190px;
+  box-sizing: border-box;
+
   border-radius: 15px;
   background: theme.$userGratitudeBlock;
   text-align: left;

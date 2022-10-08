@@ -75,14 +75,14 @@ function ProfileCard(props) {
           {userFromBackend.characteristics
             .filter(({type}) => leftColumnProps.includes(type))
             .map(({type, score}) =>
-              <SingleCharacteristic name={headerByType[type]} progress={score}/>
+              <SingleCharacteristic key={type} type={type} name={headerByType[type]} progress={score}/>
             )}
         </div>
         <div className="characteristics__right-column">
           {userFromBackend.characteristics
             .filter(({type}) => !leftColumnProps.includes(type))
             .map(({type, score}) =>
-              <SingleCharacteristic name={headerByType[type]} progress={score}/>
+              <SingleCharacteristic key={type} type={type} name={headerByType[type]} progress={score}/>
             )}
         </div>
       </footer>

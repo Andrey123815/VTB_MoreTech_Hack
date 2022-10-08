@@ -1,14 +1,14 @@
 export const INPUT_SETTINGS = {
   taskConfirm: {
     styles: {
-      width: "140px",
+      width: "130px",
       height: "14px",
       borderRadius: "7px",
       padding: "8px 10px",
       border: "unset",
       outline: "none",
       background: "#FFFFFF",
-      fontSize: "10px",
+      fontSize: "12px",
     },
     placeholder: "Введите id задания",
   },

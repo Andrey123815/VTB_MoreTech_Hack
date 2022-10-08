@@ -1,10 +1,10 @@
 import React from 'react';
-import './UserInfoLabels.scss';
+import './UserInfoLabel.scss';
 
-function UserInfoLabels(props) {
+function UserInfoLabel(props) {
   return (
     <span className="user-info-label">{props.param}</span>
   );
 }
 
-export default UserInfoLabels;
+export default UserInfoLabel;

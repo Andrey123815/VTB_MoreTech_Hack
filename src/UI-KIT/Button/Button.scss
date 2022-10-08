@@ -2,7 +2,7 @@
 
 .button {
   display: flex;
-  padding: 8px 12px;
+  padding: 6px 12px;
   font-size: 10px;
   background: theme.$primary;
   color: #FFFFFF;
@@ -13,13 +13,12 @@
 .button:hover {
   background: #FFFFFF;
   color: theme.$primary;
-  border: 1px solid theme.$primary
 }
 
-.button:active {
-  background: theme.$primary;
-  color: #FFFFFF;
+//.button:active {
+//  background: theme.$primary;
+//  color: #FFFFFF;
   //transition-duration: s;
   //box-shadow: 0 5px #666;
-  transform: translateY(1px);
-}
+  //transform: translateY(1px);
+//}

@@ -1,13 +1,13 @@
 import React from 'react';
 import RewardLabel from "../RewardLabel/RewardLabel.jsx";
-import {CURRENCIES} from "../../configurations/currencies.js";
+import {BALANCE_LINE_FEATURES} from "../../configurations/currencies.js";
 import './CurrencyBalance.scss';
 
 function CurrencyBalance() {
   return (
     <div className="currency-balance">
-      {CURRENCIES.map(currency =>
-        <RewardLabel key={currency} currency={currency} moneyAmount={1000}/>
+      {BALANCE_LINE_FEATURES.map(({rewardType, reward, rewardAmount}) =>
+        <RewardLabel key={reward} rewardType={rewardType} reward={reward} rewardAmount={rewardAmount}/>
       )}
     </div>
   );

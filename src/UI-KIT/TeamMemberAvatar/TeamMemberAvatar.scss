@@ -1,15 +1,26 @@
 @use 'src/configurations/theme.scss' as theme;
 
-.team-member-avatar {
-  background: url("public/currencies/ruble.svg");
+.team-member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+%classic-avatar {
+  background: url("/public/static_test_images/member.png");
+  background-size: contain;
   width: 73px;
   height : 73px;
   border-radius: 50%;
-  margin-right: auto;
   margin-left: auto;
-  margin-bottom: 15px;
+  margin-right: auto;
 }
 
-.team-lead-avatar {
+.team-member__avatar {
+  @extend %classic-avatar;
+}
+
+.team-members__avatar_team-lead {
+  @extend %classic-avatar;
   border: 2px solid theme.$teamLeadAvatarBorder;
 }
