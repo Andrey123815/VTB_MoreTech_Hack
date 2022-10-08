@@ -3,7 +3,7 @@ import './Login.scss'
 import logo from '../../assets/vtb.svg'
 import {useLoginUserMutation} from "../../services/userAPI.js";
 
-function Login() {
+function Login(props) {
   const [isLoginValid, setIsLoginValid] = useState(true)
   const [isPasswordValid, setIsPasswordValid] = useState(false)
   const [password, setPassword] = useState('')
@@ -11,9 +11,10 @@ function Login() {
 
   const [userLogin,] = useLoginUserMutation();
 
-  const handleClick = async (login, password) => {
-    await userLogin(login, password).then((user) => {
-      console.log(user);
+  const handleClick = async () => {
+    await userLogin({login, password}).then((user) => {
+     props.setAuth(true);
+     props.setUser(user);
     })
   }
 

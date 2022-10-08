@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
     reducerPath: 'userApi',
@@ -8,6 +8,9 @@ export const userApi = createApi({
       query: (user) => ({
         url: '/auth/login',
         method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
         body: user
       }),
     }),
