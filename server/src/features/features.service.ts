@@ -7,8 +7,6 @@ import { UserFeature } from './entities/user-feature.entity';
 
 export type TUserFeatures = Record<string, number>;
 
-export const TOXICITY_ID = 6;
-
 @Injectable()
 export class FeaturesService {
   constructor(
@@ -26,10 +24,6 @@ export class FeaturesService {
       let userFeature = new UserFeature();
       userFeature.feature = feature;
       userFeature.user = user;
-
-      if (feature.id === TOXICITY_ID) {
-        userFeature.score = 0;
-      }
 
       userFeature = await this.usersFeaturesRepository.save(userFeature);
       userFeatures.push(userFeature);
@@ -51,27 +45,19 @@ export class FeaturesService {
   }
 
   getLevel(user: User): number {
-    let countFeaturesWithoutToxicity = 0;
+    let countFeatures = 0;
     let sum = 0;
-    let toxicityScore = 0;
 
     if (user.userFeatures === undefined) {
       return 0;
     }
 
     user.userFeatures.forEach((userFeature) => {
-      if (userFeature.featureId !== TOXICITY_ID) {
-        countFeaturesWithoutToxicity += 1;
-        sum += userFeature.score;
-      } else {
-        toxicityScore = userFeature.score;
-      }
+      countFeatures += 1;
+      sum += userFeature.score;
     });
 
-    return (
-      sum / countFeaturesWithoutToxicity -
-      toxicityScore / countFeaturesWithoutToxicity
-    );
+    return sum / countFeatures;
   }
 
   findAll() {

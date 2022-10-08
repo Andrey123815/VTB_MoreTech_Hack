@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToOne,
   OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Team } from './team.entity';
 import { UserFeature } from '../../features/entities/user-feature.entity';
@@ -57,9 +58,15 @@ export class User {
   @Column()
   avatarSrc: string;
 
-  @OneToOne(() => Wallet, (wallet) => wallet.user)
+  @OneToOne(() => Wallet)
+  @JoinColumn()
   @Exclude()
-  wallet: Wallet;
+  mainWallet: Wallet;
+
+  @OneToOne(() => Wallet)
+  @JoinColumn()
+  @Exclude()
+  listedWallet: Wallet;
 
   @OneToMany(() => UserFeature, (userFeature) => userFeature.user)
   @Exclude()

@@ -1,15 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Axios } from 'axios';
-import { User } from 'src/users/enities/user.entity';
+import { Axios, AxiosResponse } from 'axios';
 import { Repository } from 'typeorm';
 import { Wallet } from '../blockchain/entities/wallet.entity';
+import { InsufficientFundsToPayFee } from './errors/insufficient-funds-to-pay-fee.error';
+import { InsufficientFundsToSend } from './errors/insufficient-funds-to-send.error';
 
 type TCreateWalletResponse = {
   privateKey: string;
   publicKey: string;
 };
+
+type TGetBalanceResponse = {
+  maticAmount: number;
+  coinsAmount: number;
+};
+
+type TSendMoneyRequest = {
+  fromPrivateKey: string;
+  toPublicKey: string;
+  amount: number;
+};
+
+type TSendMoneyResponse = {
+  transactionHash: string;
+};
+
+type TTransactionStatusResponse = {
+  status: 'success' | string;
+};
+
+const TRANSACTION_MATIC_FEE = 0.00001;
+
+const REFRESH_TRANSACTION_STATUS_TIMEOUT = 10000;
 
 @Injectable()
 export class BlockchainService {
@@ -28,20 +52,94 @@ export class BlockchainService {
     });
   }
 
-  async createWallet(user: User): Promise<Wallet> {
+  async createWallet(): Promise<Wallet> {
     const { data: keyPair } = await this.axios.post<TCreateWalletResponse>(
       '/v1/wallets/new',
     );
-    const { data: listedKeyPair } =
-      await this.axios.post<TCreateWalletResponse>('/v1/wallets/new');
 
     const wallet = new Wallet();
-    wallet.user = user;
-    wallet.keyPair = keyPair;
-    wallet.listedKeyPair = listedKeyPair;
+    wallet.privtaeKey = keyPair.privateKey;
+    wallet.publicKey = keyPair.publicKey;
 
     await this.walletsRepository.save(wallet);
 
     return wallet;
+  }
+
+  async sendMoney(
+    walletFrom: Wallet,
+    walletTo: Wallet,
+    amount: number,
+    currency: 'matic' | 'ruble',
+  ) {
+    if (walletFrom === walletTo) {
+      return;
+    }
+
+    if (amount <= 0) {
+      return;
+    }
+
+    if (walletFrom.maticAmount < TRANSACTION_MATIC_FEE) {
+      throw new InsufficientFundsToPayFee();
+    }
+
+    if (
+      (currency === 'matic' &&
+        walletFrom.maticAmount + TRANSACTION_MATIC_FEE < amount) ||
+      (currency == 'ruble' && walletFrom.rubleAmount < amount)
+    ) {
+      throw new InsufficientFundsToSend();
+    }
+
+    const {
+      data: { transactionHash },
+    } = await this.axios.post<
+      TSendMoneyResponse,
+      AxiosResponse<TSendMoneyResponse>,
+      TSendMoneyRequest
+    >(`/v1/transfer/${currency}`, {
+      fromPrivateKey: walletFrom.privtaeKey,
+      toPublicKey: walletTo.publicKey,
+      amount,
+    });
+
+    walletFrom.rubleAmount -= amount;
+    walletFrom.maticAmount -= TRANSACTION_MATIC_FEE;
+
+    walletTo.rubleAmount += amount;
+
+    await this.walletsRepository.save(walletFrom);
+    await this.walletsRepository.save(walletTo);
+
+    const updateStatus = async () => {
+      const {
+        data: { status },
+      } = await this.axios.post<TTransactionStatusResponse>(
+        `/v1/transfers/status/${transactionHash}`,
+      );
+
+      if (status === 'success') {
+        this.updateBalance(walletFrom);
+        this.updateBalance(walletTo);
+      } else {
+        setTimeout(updateStatus, REFRESH_TRANSACTION_STATUS_TIMEOUT);
+      }
+    };
+
+    setTimeout(updateStatus, REFRESH_TRANSACTION_STATUS_TIMEOUT);
+  }
+
+  private async updateBalance(wallet: Wallet) {
+    const {
+      data: { maticAmount, coinsAmount },
+    } = await this.axios.post<TGetBalanceResponse>(
+      `/v1/wallets/${wallet.publicKey}/nft/balance`,
+    );
+
+    wallet.maticAmount = maticAmount;
+    wallet.rubleAmount = coinsAmount;
+
+    return this.walletsRepository.save(wallet);
   }
 }

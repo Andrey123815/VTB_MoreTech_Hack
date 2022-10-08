@@ -21,13 +21,15 @@ export class UsersService {
     return user;
   }
 
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find({
-      relations: {
-        userFeatures: true,
-        team: true,
-      },
-    });
+  async findAll(): Promise<User[]> {
+    return (
+      await this.usersRepository.find({
+        relations: {
+          userFeatures: true,
+          team: true,
+        },
+      })
+    ).map((user) => this.prepareUser(user));
   }
 
   async findAllInTeam(teamId: number | undefined): Promise<User[]> {
@@ -68,9 +70,14 @@ export class UsersService {
 
   async create(userDto: CreateUserDto): Promise<User> {
     let user = this.usersRepository.create(userDto);
+
+    user.mainWallet = await this.blockchainService.createWallet();
+    user.listedWallet = await this.blockchainService.createWallet();
+
     user = await this.usersRepository.save(user);
-    user.wallet = await this.blockchainService.createWallet(user);
+
     user.userFeatures = await this.featuresService.addFeaturesToUser(user);
+
     return this.prepareUser(user);
   }
 }

@@ -1,17 +1,5 @@
-import { Exclude } from 'class-transformer';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../users/enities/user.entity';
-
-export type TKeyPair = {
-  privateKey: string;
-  publicKey: string;
-};
 
 const LISTED_BALANCE_PER_MONTH = 100;
 
@@ -20,26 +8,21 @@ export class Wallet {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Exclude()
-  @OneToOne(() => User, (user) => user.wallet)
-  @JoinColumn()
-  user: User;
+  @Column()
+  privtaeKey: string;
 
-  @Column('json')
-  keyPair: TKeyPair;
+  @Column()
+  publicKey: string;
 
   @Column({
     type: 'float',
     default: 0,
   })
-  balance: number;
-
-  @Column('json')
-  listedKeyPair: TKeyPair;
+  maticAmount: number;
 
   @Column({
     type: 'float',
     default: 0,
   })
-  listedBalance: number;
+  rubleAmount: number;
 }

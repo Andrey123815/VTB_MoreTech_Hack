@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class Init1665208028093 implements MigrationInterface {
-  name = 'Init1665208028093';
+export class init1665245814473 implements MigrationInterface {
+  name = 'init1665245814473';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -23,16 +23,16 @@ export class Init1665208028093 implements MigrationInterface {
       `CREATE TABLE "features" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "imageSrc" character varying NOT NULL, CONSTRAINT "PK_5c1e336df2f4a7051e5bf08a941" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "users_features" ("userId" integer NOT NULL, "featureId" integer NOT NULL, "score" float NOT NULL DEFAULT '10', CONSTRAINT "PK_68b9f8a8b3e1352d080304ba14c" PRIMARY KEY ("userId", "featureId"))`,
+      `CREATE TABLE "users_features" ("userId" integer NOT NULL, "featureId" integer NOT NULL, "score" double precision NOT NULL DEFAULT '10', CONSTRAINT "PK_68b9f8a8b3e1352d080304ba14c" PRIMARY KEY ("userId", "featureId"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "wallets" ("id" SERIAL NOT NULL, "keyPair" json NOT NULL, "balance" float NOT NULL DEFAULT '0', "listedKeyPair" json NOT NULL, "listedBalance" float NOT NULL DEFAULT '0', "userId" integer, CONSTRAINT "REL_2ecdb33f23e9a6fc392025c0b9" UNIQUE ("userId"), CONSTRAINT "PK_8402e5df5a30a229380e83e4f7e" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "wallets" ("id" SERIAL NOT NULL, "privtaeKey" character varying NOT NULL, "publicKey" character varying NOT NULL, "maticAmount" double precision NOT NULL DEFAULT '0', "rubleAmount" double precision NOT NULL DEFAULT '0', CONSTRAINT "PK_8402e5df5a30a229380e83e4f7e" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TYPE "public"."users_role_enum" AS ENUM('admin', 'teamlead', 'member')`,
     );
     await queryRunner.query(
-      `CREATE TABLE "users" ("id" SERIAL NOT NULL, "login" character varying NOT NULL, "password" character varying NOT NULL, "fullName" character varying NOT NULL, "specialization" character varying NOT NULL, "grade" character varying NOT NULL, "role" "public"."users_role_enum" NOT NULL DEFAULT 'member', "avatarSrc" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "teamId" integer, CONSTRAINT "UQ_2d443082eccd5198f95f2a36e2c" UNIQUE ("login"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "users" ("id" SERIAL NOT NULL, "login" character varying NOT NULL, "password" character varying NOT NULL, "fullName" character varying NOT NULL, "specialization" character varying NOT NULL, "grade" character varying NOT NULL, "role" "public"."users_role_enum" NOT NULL DEFAULT 'member', "teamId" integer NOT NULL, "avatarSrc" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "mainWalletId" integer, "listedWalletId" integer, CONSTRAINT "UQ_2d443082eccd5198f95f2a36e2c" UNIQUE ("login"), CONSTRAINT "REL_d06193a9b81d97c048921b8b5f" UNIQUE ("mainWalletId"), CONSTRAINT "REL_0e2c02bb8b7b6fb94ac1865441" UNIQUE ("listedWalletId"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "tasks_features_features" ("tasksId" integer NOT NULL, "featuresId" integer NOT NULL, CONSTRAINT "PK_d9e4f1990b2c436804e90654481" PRIMARY KEY ("tasksId", "featuresId"))`,
@@ -59,10 +59,13 @@ export class Init1665208028093 implements MigrationInterface {
       `ALTER TABLE "users_features" ADD CONSTRAINT "FK_3542d4ca03151a45d1e5398c0a0" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "wallets" ADD CONSTRAINT "FK_2ecdb33f23e9a6fc392025c0b97" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "users" ADD CONSTRAINT "FK_d1803064187c8f38e57a9c4984c" FOREIGN KEY ("teamId") REFERENCES "teams"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "users" ADD CONSTRAINT "FK_d1803064187c8f38e57a9c4984c" FOREIGN KEY ("teamId") REFERENCES "teams"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "users" ADD CONSTRAINT "FK_d06193a9b81d97c048921b8b5f7" FOREIGN KEY ("mainWalletId") REFERENCES "wallets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "users" ADD CONSTRAINT "FK_0e2c02bb8b7b6fb94ac1865441d" FOREIGN KEY ("listedWalletId") REFERENCES "wallets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
       `ALTER TABLE "tasks_features_features" ADD CONSTRAINT "FK_646e4209e2fb496ca70d0c01058" FOREIGN KEY ("tasksId") REFERENCES "tasks"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
@@ -80,10 +83,13 @@ export class Init1665208028093 implements MigrationInterface {
       `ALTER TABLE "tasks_features_features" DROP CONSTRAINT "FK_646e4209e2fb496ca70d0c01058"`,
     );
     await queryRunner.query(
-      `ALTER TABLE "users" DROP CONSTRAINT "FK_d1803064187c8f38e57a9c4984c"`,
+      `ALTER TABLE "users" DROP CONSTRAINT "FK_0e2c02bb8b7b6fb94ac1865441d"`,
     );
     await queryRunner.query(
-      `ALTER TABLE "wallets" DROP CONSTRAINT "FK_2ecdb33f23e9a6fc392025c0b97"`,
+      `ALTER TABLE "users" DROP CONSTRAINT "FK_d06193a9b81d97c048921b8b5f7"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP CONSTRAINT "FK_d1803064187c8f38e57a9c4984c"`,
     );
     await queryRunner.query(
       `ALTER TABLE "users_features" DROP CONSTRAINT "FK_3542d4ca03151a45d1e5398c0a0"`,

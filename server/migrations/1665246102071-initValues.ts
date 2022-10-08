@@ -1,17 +1,20 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { bcryptContants } from '../src/auth/constants';
-import { TOXICITY_ID } from '../src/features/features.service';
 
-export class fillInitValues1665212074375 implements MigrationInterface {
+export class initValues1665246102071 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    const password = await bcrypt.hash('password', bcryptContants.salt);
     await queryRunner.query(
-      `INSERT INTO users VALUES (1, 'admin', '${password}', 'Admin Admin', 'Admin', 'Senior', 'admin', '<avatarSrc>')`,
+      `INSERT INTO teams VALUES (1, 'Sanvi', '/static/teams/manchester-city-big.png')`,
     );
 
     await queryRunner.query(
-      `INSERT INTO teams VALUES (1, 'Sanvi', '/static/teams/manchester-city-big.png')`,
+      `INSERT INTO wallets VALUES (1, '${process.env.PRIVATE_KEY}', '${process.env.PUBLIC_KEY}', ${process.env.INIT_COIN_BALANCE}, ${process.env.INIT_MATIC_BALANCE})`,
+    );
+
+    const password = await bcrypt.hash('password', bcryptContants.salt);
+    await queryRunner.query(
+      `INSERT INTO users VALUES (1, 'admin', '${password}', 'Admin Admin', 'Admin', 'Senior', 'admin', 1, '<avatarSrc>', now(), 1, 1)`,
     );
 
     await queryRunner.query(
@@ -28,9 +31,6 @@ export class fillInitValues1665212074375 implements MigrationInterface {
     );
     await queryRunner.query(
       `INSERT INTO features VALUES (5, 'Качество работы', '/static/features/high-quality 1.svg')`,
-    );
-    await queryRunner.query(
-      `INSERT INTO features VALUES (${TOXICITY_ID}, 'Токсичность', '/static/features/😈.svg')`,
     );
   }
 
