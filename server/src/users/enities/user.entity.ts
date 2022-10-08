@@ -47,6 +47,10 @@ export class User {
   })
   role: UserRole;
 
+  @Column('int')
+  @Exclude()
+  teamId: number;
+
   @ManyToOne(() => Team, (team) => team.users)
   team: Team;
 
@@ -58,6 +62,7 @@ export class User {
   wallet: Wallet;
 
   @OneToMany(() => UserFeature, (userFeature) => userFeature.user)
+  @Exclude()
   userFeatures: UserFeature[];
 
   @OneToMany(() => UserTask, (userTask) => userTask.user)
@@ -71,4 +76,8 @@ export class User {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: number;
+
+  level: number;
+
+  features: Record<string, number>;
 }

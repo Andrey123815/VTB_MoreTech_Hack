@@ -23,7 +23,7 @@ export class Init1665208028093 implements MigrationInterface {
       `CREATE TABLE "features" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, CONSTRAINT "PK_5c1e336df2f4a7051e5bf08a941" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "users_features" ("userId" integer NOT NULL, "featureId" integer NOT NULL, "score" integer NOT NULL, CONSTRAINT "PK_68b9f8a8b3e1352d080304ba14c" PRIMARY KEY ("userId", "featureId"))`,
+      `CREATE TABLE "users_features" ("userId" integer NOT NULL, "featureId" integer NOT NULL, "score" float NOT NULL DEFAULT '10', CONSTRAINT "PK_68b9f8a8b3e1352d080304ba14c" PRIMARY KEY ("userId", "featureId"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "wallets" ("id" SERIAL NOT NULL, "keyPair" json NOT NULL, "balance" float NOT NULL DEFAULT '0', "listedKeyPair" json NOT NULL, "listedBalance" float NOT NULL DEFAULT '0', "userId" integer, CONSTRAINT "REL_2ecdb33f23e9a6fc392025c0b9" UNIQUE ("userId"), CONSTRAINT "PK_8402e5df5a30a229380e83e4f7e" PRIMARY KEY ("id"))`,

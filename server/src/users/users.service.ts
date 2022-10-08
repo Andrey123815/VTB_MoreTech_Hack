@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { FeaturesService } from '../features/features.service';
 import { BlockchainService } from '../blockchain/blockchain.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './enities/user.entity';
@@ -11,23 +12,63 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private blockchainService: BlockchainService,
+    private featuresService: FeaturesService,
   ) {}
 
+  private prepareUser(user: User): User {
+    user.features = this.featuresService.getFeatures(user);
+    user.level = this.featuresService.getLevel(user);
+    return user;
+  }
+
   findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      relations: {
+        userFeatures: true,
+        team: true,
+      },
+    });
   }
 
-  findOne(login: string): Promise<User> {
-    return this.usersRepository.findOneBy({ login });
+  async findAllInTeam(teamId: number | undefined): Promise<User[]> {
+    if (teamId === undefined) {
+      return [];
+    }
+
+    return this.usersRepository.find({
+      where: {
+        teamId,
+      },
+      relations: {
+        userFeatures: true,
+        team: true,
+      },
+    });
   }
 
-  get(id: number): Promise<User> {
-    return this.usersRepository.findOneBy({ id });
+  async findOne(login: string): Promise<User> {
+    return this.prepareUser(
+      await this.usersRepository.findOne({
+        where: {
+          login,
+        },
+        relations: {
+          userFeatures: true,
+          team: true,
+        },
+      }),
+    );
+  }
+
+  async get(id: number): Promise<User> {
+    return this.prepareUser(await this.usersRepository.findOneBy({ id }));
   }
 
   async create(userDto: CreateUserDto): Promise<User> {
-    const user = await this.usersRepository.save(userDto);
+    let user = this.usersRepository.create(userDto);
+    user = await this.usersRepository.save(user);
     user.wallet = await this.blockchainService.createWallet(user);
-    return user;
+    user.userFeatures = await this.featuresService.addFeaturesToUser(user);
+    return this.prepareUser(user);
   }
 }

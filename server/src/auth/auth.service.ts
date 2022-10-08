@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/enities/user.entity';
@@ -11,7 +11,7 @@ export type JwtPayload = {
   sub: number;
 };
 export type AuthData = {
-  access_token: string;
+  accessToken: string;
 };
 
 @Injectable()
@@ -43,7 +43,7 @@ export class AuthService {
   auth(user: User): AuthData {
     const payload: JwtPayload = { login: user.login, sub: user.id };
     return {
-      access_token: this.jwtService.sign(payload),
+      accessToken: this.jwtService.sign(payload),
     };
   }
 
