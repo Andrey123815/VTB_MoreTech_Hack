@@ -8,7 +8,7 @@ function Popup(props) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box style={{width: "300px", height: "300px", background: "red"}}>
+      <Box style={{width: "min-content"}}>
         {props.children}
       </Box>
     </Modal>
