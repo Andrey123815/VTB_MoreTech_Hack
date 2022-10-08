@@ -24,7 +24,7 @@ type TSendMoneyRequest = {
 };
 
 type TSendMoneyResponse = {
-  transactionHash: string;
+  transaction: string;
 };
 
 type TTransactionStatusResponse = {
@@ -33,7 +33,7 @@ type TTransactionStatusResponse = {
 
 const TRANSACTION_MATIC_FEE = 0.00001;
 
-const REFRESH_TRANSACTION_STATUS_TIMEOUT = 10000;
+const REFRESH_TRANSACTION_STATUS_TIMEOUT = 60000;
 
 @Injectable()
 export class BlockchainService {
@@ -92,13 +92,11 @@ export class BlockchainService {
       throw new InsufficientFundsToSend();
     }
 
-    const {
-      data: { transactionHash },
-    } = await this.axios.post<
+    const { data } = await this.axios.post<
       TSendMoneyResponse,
       AxiosResponse<TSendMoneyResponse>,
       TSendMoneyRequest
-    >(`/v1/transfer/${currency}`, {
+    >(`/v1/transfers/${currency}`, {
       fromPrivateKey: walletFrom.privtaeKey,
       toPublicKey: walletTo.publicKey,
       amount,
@@ -116,7 +114,7 @@ export class BlockchainService {
       const {
         data: { status },
       } = await this.axios.post<TTransactionStatusResponse>(
-        `/v1/transfers/status/${transactionHash}`,
+        `/v1/transfers/status/${data.transaction}`,
       );
 
       if (status === 'success') {

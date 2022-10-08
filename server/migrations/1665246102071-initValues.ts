@@ -9,7 +9,7 @@ export class initValues1665246102071 implements MigrationInterface {
     );
 
     await queryRunner.query(
-      `INSERT INTO wallets VALUES (1, '${process.env.PRIVATE_KEY}', '${process.env.PUBLIC_KEY}', ${process.env.INIT_COIN_BALANCE}, ${process.env.INIT_MATIC_BALANCE})`,
+      `INSERT INTO wallets VALUES (1, '${process.env.PRIVATE_KEY}', '${process.env.PUBLIC_KEY}', ${process.env.INIT_MATIC_BALANCE}, ${process.env.INIT_COIN_BALANCE})`,
     );
 
     const password = await bcrypt.hash('password', bcryptContants.salt);

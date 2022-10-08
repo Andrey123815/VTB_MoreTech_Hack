@@ -8,6 +8,15 @@ import { User } from './enities/user.entity';
 
 @Injectable()
 export class UsersService {
+  static USER_RELATION_OPTIONS = {
+    userFeatures: {
+      feature: true,
+    },
+    mainWallet: true,
+    listedWallet: true,
+    team: true,
+  };
+
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
@@ -24,10 +33,7 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     return (
       await this.usersRepository.find({
-        relations: {
-          userFeatures: true,
-          team: true,
-        },
+        relations: UsersService.USER_RELATION_OPTIONS,
       })
     ).map((user) => this.prepareUser(user));
   }
@@ -42,10 +48,7 @@ export class UsersService {
         where: {
           teamId,
         },
-        relations: {
-          userFeatures: true,
-          team: true,
-        },
+        relations: UsersService.USER_RELATION_OPTIONS,
       })
     ).map((user) => this.prepareUser(user));
   }
@@ -56,16 +59,18 @@ export class UsersService {
         where: {
           login,
         },
-        relations: {
-          userFeatures: true,
-          team: true,
-        },
+        relations: UsersService.USER_RELATION_OPTIONS,
       }),
     );
   }
 
   async get(id: number): Promise<User> {
-    return this.prepareUser(await this.usersRepository.findOneBy({ id }));
+    return this.prepareUser(
+      await this.usersRepository.findOne({
+        where: { id },
+        relations: UsersService.USER_RELATION_OPTIONS,
+      }),
+    );
   }
 
   async create(userDto: CreateUserDto): Promise<User> {
