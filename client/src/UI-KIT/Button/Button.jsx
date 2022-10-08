@@ -3,9 +3,9 @@ import './Button.scss';
 
 function Button(props) {
   return (
-    <button className="button">
+    <div className="button">
       {props.children}
-    </button>
+    </div>
   );
 }
 

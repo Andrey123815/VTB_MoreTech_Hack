@@ -3,6 +3,7 @@
 .button {
   display: flex;
   padding: 6px 12px;
+  width: min-content;
   font-size: 10px;
   background: theme.$primary;
   color: #FFFFFF;
@@ -11,14 +12,15 @@
 }
 
 .button:hover {
-  background: #FFFFFF;
-  color: theme.$primary;
+  background: linear-gradient(179.19deg, #4843DC 0%, #203AEB 103.93%);
+  //color: theme.$primary;
+  filter: drop-shadow(0px 2px 20px rgba(72, 67, 220, 0.55));
 }
 
 //.button:active {
 //  background: theme.$primary;
 //  color: #FFFFFF;
-  //transition-duration: s;
-  //box-shadow: 0 5px #666;
-  //transform: translateY(1px);
+//  transition-duration: s;
+//  box-shadow: 0 5px #666;
+//  transform: translateY(1px);
 //}
