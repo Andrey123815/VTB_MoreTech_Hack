@@ -1,0 +1,23 @@
+.market-place {
+  width: 954px;
+  height: 560px;
+  box-shadow: 4px 4px 20px rgba(81, 81, 81, 0.1);
+  border-radius: 15px;
+  padding: 25px 50px;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.market-place__items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  margin-top: 20px;
+}
