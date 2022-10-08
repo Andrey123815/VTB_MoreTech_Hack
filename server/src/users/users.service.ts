@@ -53,7 +53,7 @@ export class UsersService {
     ).map((user) => this.prepareUser(user));
   }
 
-  async findOne(login: string): Promise<User> {
+  async findOne(login: string): Promise<User | null> {
     return this.prepareUser(
       await this.usersRepository.findOne({
         where: {
@@ -64,7 +64,7 @@ export class UsersService {
     );
   }
 
-  async get(id: number): Promise<User> {
+  async get(id: number): Promise<User | null> {
     return this.prepareUser(
       await this.usersRepository.findOne({
         where: { id },

@@ -1,11 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Axios, AxiosResponse } from 'axios';
 import { Repository } from 'typeorm';
 import { Wallet } from '../blockchain/entities/wallet.entity';
-import { InsufficientFundsToPayFee } from './errors/insufficient-funds-to-pay-fee.error';
-import { InsufficientFundsToSend } from './errors/insufficient-funds-to-send.error';
 
 type TCreateWalletResponse = {
   privateKey: string;
@@ -28,7 +26,7 @@ type TSendMoneyResponse = {
 };
 
 type TTransactionStatusResponse = {
-  status: 'success' | string;
+  status: 'Success' | 'Pending';
 };
 
 const TRANSACTION_MATIC_FEE = 0.00001;
@@ -81,7 +79,7 @@ export class BlockchainService {
     }
 
     if (walletFrom.maticAmount < TRANSACTION_MATIC_FEE) {
-      throw new InsufficientFundsToPayFee();
+      throw new BadRequestException('Insufficient funds to pay fee');
     }
 
     if (
@@ -89,7 +87,7 @@ export class BlockchainService {
         walletFrom.maticAmount + TRANSACTION_MATIC_FEE < amount) ||
       (currency == 'ruble' && walletFrom.rubleAmount < amount)
     ) {
-      throw new InsufficientFundsToSend();
+      throw new BadRequestException('Insufficient funds to send');
     }
 
     const { data } = await this.axios.post<
@@ -111,17 +109,30 @@ export class BlockchainService {
     await this.walletsRepository.save(walletTo);
 
     const updateStatus = async () => {
-      const {
-        data: { status },
-      } = await this.axios.post<TTransactionStatusResponse>(
-        `/v1/transfers/status/${data.transaction}`,
-      );
+      try {
+        const {
+          data: { status },
+        } = await this.axios.get<TTransactionStatusResponse>(
+          `/v1/transfers/status/${data.transaction}`,
+        );
 
-      if (status === 'success') {
-        this.updateBalance(walletFrom);
-        this.updateBalance(walletTo);
-      } else {
-        setTimeout(updateStatus, REFRESH_TRANSACTION_STATUS_TIMEOUT);
+        console.log(data.transaction, status);
+
+        if (status === 'Success') {
+          this.updateBalance(walletFrom);
+          this.updateBalance(walletTo);
+        } else if (status === 'Pending') {
+          setTimeout(updateStatus, REFRESH_TRANSACTION_STATUS_TIMEOUT);
+        } else {
+          walletFrom.rubleAmount += amount;
+          walletFrom.maticAmount += TRANSACTION_MATIC_FEE;
+          walletTo.rubleAmount -= amount;
+
+          await this.walletsRepository.save(walletFrom);
+          await this.walletsRepository.save(walletTo);
+        }
+      } catch (e) {
+        setTimeout(updateStatus, 5000);
       }
     };
 
