@@ -7,7 +7,7 @@ import { UserFeature } from './entities/user-feature.entity';
 
 export type TUserFeatures = Record<string, number>;
 
-export const TOXICITY_ID = 7;
+export const TOXICITY_ID = 6;
 
 @Injectable()
 export class FeaturesService {

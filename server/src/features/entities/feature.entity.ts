@@ -16,6 +16,9 @@ export class Feature {
   @Column()
   title: string;
 
+  @Column()
+  imageSrc: string;
+
   @OneToMany(() => UserFeature, (userFeature) => userFeature.feature)
   userFeatures: UserFeature[];
 

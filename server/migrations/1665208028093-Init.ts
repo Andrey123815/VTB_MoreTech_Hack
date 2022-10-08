@@ -5,7 +5,7 @@ export class Init1665208028093 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "teams" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, CONSTRAINT "PK_7e5523774a38b08a6236d322403" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "teams" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "imageSrc" character varying NOT NULL, CONSTRAINT "PK_7e5523774a38b08a6236d322403" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TYPE "public"."users_tasks_completionstatus_enum" AS ENUM('done', 'in_progress')`,
@@ -20,7 +20,7 @@ export class Init1665208028093 implements MigrationInterface {
       `CREATE TABLE "tasks" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "description" character varying NOT NULL, "rewardCoins" integer NOT NULL, "featureId" integer NOT NULL, "rewardFeature" integer NOT NULL, "creationStatus" "public"."tasks_creationstatus_enum" NOT NULL DEFAULT 'in_moderation', "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "creatorId" integer, CONSTRAINT "UQ_067be4bd67747aa64451933929e" UNIQUE ("title"), CONSTRAINT "PK_8d12ff38fcc62aaba2cab748772" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "features" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, CONSTRAINT "PK_5c1e336df2f4a7051e5bf08a941" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "features" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "imageSrc" character varying NOT NULL, CONSTRAINT "PK_5c1e336df2f4a7051e5bf08a941" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "users_features" ("userId" integer NOT NULL, "featureId" integer NOT NULL, "score" float NOT NULL DEFAULT '10', CONSTRAINT "PK_68b9f8a8b3e1352d080304ba14c" PRIMARY KEY ("userId", "featureId"))`,

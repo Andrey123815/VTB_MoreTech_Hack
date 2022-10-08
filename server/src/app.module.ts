@@ -11,9 +11,15 @@ import { FeaturesModule } from './features/features.module';
 import { DatabaseModule } from './database/database.module';
 import { AdminModule } from './admin/admin.module';
 import { BlockchainModule } from './blockchain/blockchain.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
+      serveRoot: '/static',
+    }),
     ConfigModule.forRoot(),
     TasksModule,
     BlockchainModule,

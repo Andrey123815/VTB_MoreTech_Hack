@@ -10,16 +10,27 @@ export class fillInitValues1665212074375 implements MigrationInterface {
       `INSERT INTO users VALUES (1, 'admin', '${password}', 'Admin Admin', 'Admin', 'Senior', 'admin', '<avatarSrc>')`,
     );
 
-    await queryRunner.query(`INSERT INTO teams VALUES (1, 'Sanvi')`);
-
-    await queryRunner.query(`INSERT INTO features VALUES (1, 'Обучение')`);
-    await queryRunner.query(`INSERT INTO features VALUES (2, 'Менторинг')`);
-    await queryRunner.query(`INSERT INTO features VALUES (3, 'Коммуникация')`);
-    await queryRunner.query(`INSERT INTO features VALUES (4, 'Исследование')`);
-    await queryRunner.query(`INSERT INTO features VALUES (5, 'Качество')`);
-    await queryRunner.query(`INSERT INTO features VALUES (6, 'Экспертность')`);
     await queryRunner.query(
-      `INSERT INTO features VALUES (${TOXICITY_ID}, 'Токсичность')`,
+      `INSERT INTO teams VALUES (1, 'Sanvi', '/static/teams/manchester-city-big.png')`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO features VALUES (1, 'Коммуникация', '/static/features/chat (1) 1.svg')`,
+    );
+    await queryRunner.query(
+      `INSERT INTO features VALUES (2, 'Отзывчивость', '/static/features/Mask group (8).svg')`,
+    );
+    await queryRunner.query(
+      `INSERT INTO features VALUES (3, 'Лидерство', '/static/features/leadership 1.svg')`,
+    );
+    await queryRunner.query(
+      `INSERT INTO features VALUES (4, 'Экспертность', '/static/features/brain 1.svg')`,
+    );
+    await queryRunner.query(
+      `INSERT INTO features VALUES (5, 'Качество работы', '/static/features/high-quality 1.svg')`,
+    );
+    await queryRunner.query(
+      `INSERT INTO features VALUES (${TOXICITY_ID}, 'Токсичность', '/static/features/😈.svg')`,
     );
   }
 

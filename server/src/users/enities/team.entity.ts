@@ -9,6 +9,9 @@ export class Team {
   @Column()
   title: string;
 
+  @Column()
+  imageSrc: string;
+
   @OneToMany(() => User, (user) => user.team)
   users: User[];
 }
