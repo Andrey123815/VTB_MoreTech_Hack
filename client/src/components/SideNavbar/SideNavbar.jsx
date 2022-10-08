@@ -8,6 +8,7 @@ function SideNavbar(props) {
   return (
     <div className="sidebar">
       <div className='sidebar__nav'>
+        <img src="/icons/logotype.svg" alt="VTB logotype" />
         {
           NAV_ITEMS.map(item => {
             return (
