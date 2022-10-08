@@ -35,15 +35,17 @@ export class UsersService {
       return [];
     }
 
-    return this.usersRepository.find({
-      where: {
-        teamId,
-      },
-      relations: {
-        userFeatures: true,
-        team: true,
-      },
-    });
+    return (
+      await this.usersRepository.find({
+        where: {
+          teamId,
+        },
+        relations: {
+          userFeatures: true,
+          team: true,
+        },
+      })
+    ).map((user) => this.prepareUser(user));
   }
 
   async findOne(login: string): Promise<User> {
