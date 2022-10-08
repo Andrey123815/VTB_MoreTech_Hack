@@ -6,7 +6,7 @@ import {STATUS_FILTERS} from "../../configurations/filters.js";
 const initFilterType = 'new';
 
 const tasksCountFromBackend = {
-  inProcess: 2,
+  inProcess: 10,
   done: 3
 }
 

@@ -8,14 +8,11 @@
   color: theme.$primary;
   margin-left: 63px;
   margin-top: -18px;
+  text-align: center;
+  line-height: 22px;
 }
 
 .tasks-counter {
-  &__count {
-    top: 17%;
-    position: relative;
-  }
-
   &_task-done {
     @extend %counter;
     background: theme.$isDoneTaskCounter;
