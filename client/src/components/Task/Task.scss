@@ -1,0 +1,38 @@
+.task__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 200px;
+  max-height: 95px;
+  height: 130px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  filter: drop-shadow(4px 4px 20px rgba(0, 0, 0, 0.1));
+  padding: 18px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.task {
+  &__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    font-size: 12px;
+    align-self: unset;
+    margin-top: 25px;
+    position: absolute;
+  }
+}
+
+.awards-section {
+  display: inline-flex;
+  justify-content: space-between;
+}

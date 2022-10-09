@@ -1,0 +1,82 @@
+@use 'src/configurations/theme' as theme;
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-card {
+  @extend %flex-col;
+
+  width: 380px;
+  height: 335px;
+
+  background: #FDFDFD;
+  opacity: 0.93;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 22px 22px 22px 22px;
+
+  &__user-info {
+    @extend %flex-row;
+  }
+
+  &__avatar {
+    width: 120px;
+    height: 150px;
+    background: url('public/currencies/crystal.svg');
+    border-radius: 10px;;
+  }
+
+  &__separator {
+    border-top: 1px solid theme.$hrLine;
+    border-bottom: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  &__characteristics {
+    @extend %flex-row;
+    height: 152px;
+  }
+}
+
+.user-info {
+  &__first-line, &__second-line  {
+    @extend %flex-col;
+    height: 150px;
+  }
+}
+
+.second-line__up-block {
+  @extend %flex-row;
+
+  width: 90px;
+  text-align: left;
+}
+
+.team-emblem {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+}
+
+.close-button {
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+.characteristics {
+  &__left-column, &__right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

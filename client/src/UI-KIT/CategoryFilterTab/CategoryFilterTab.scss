@@ -1,0 +1,42 @@
+@use 'src/configurations/theme.scss' as theme;
+
+%basic-category {
+  display: flex;
+  background: #FFFFFF;
+  justify-content: flex-start;
+  width: min-content;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.category-filter-tab {
+  @extend %basic-category;
+}
+
+.category-filter-tab_active {
+  @extend %basic-category;
+  background: theme.$activeFilterTabBackground;
+}
+
+.filter-active {
+  background: theme.$activeFilterTabBackground;
+}
+
+.category-tab {
+  &__line-mark {
+    width: 5px;
+    height: 100%;
+    border-radius: 0 2px 2px 0;
+    background: theme.$primary;
+    justify-items: center;
+  }
+  &__filter-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    font-size: 12px;
+  }
+}
+

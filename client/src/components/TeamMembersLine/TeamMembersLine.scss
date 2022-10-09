@@ -1,0 +1,14 @@
+.team-member {
+  display: inline-block;
+  text-align: center;
+  height: 100px;
+}
+
+.team-members-line {
+  display: flex;
+  flex-direction: row;
+  //justify-content: space-between;
+  gap: 40px;
+  //width: 955px;
+  margin-bottom: 35px;
+}

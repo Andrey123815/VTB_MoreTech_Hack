@@ -1,0 +1,35 @@
+@use 'src/configurations/theme' as theme;
+
+.characteristic {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+
+  width: 140px;
+  height: 45px;
+
+  &__info {
+    font-size: 12px;
+    font-weight: 500;
+    color: #222222;
+    line-height: 12px;
+  }
+  &__graphic-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.info__avatar {
+  position: relative;
+  top: 6px;
+  left: 5px
+}
+
+.graphic-block__progress-score {
+  font-size: 24px;
+  color: theme.$primary;
+  font-weight: 500;
+}
