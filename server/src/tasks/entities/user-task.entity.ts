@@ -1,6 +1,7 @@
 import { User } from '../../users/enities/user.entity';
 import { PrimaryColumn, Column, Entity, ManyToOne } from 'typeorm';
 import { Task } from './task.entity';
+import { Exclude, Expose } from 'class-transformer';
 
 export enum TaskCompletionStatus {
   DONE = 'done',
@@ -18,11 +19,32 @@ export class UserTask {
   @PrimaryColumn()
   taskId: number;
 
+  @Exclude()
   @ManyToOne(() => Task, (Task) => Task.userTasks)
   task: Task;
 
+  @Exclude()
   @ManyToOne(() => User, (user) => user.userTasks)
   user: User;
+
+  @Exclude()
+  @Column('float')
+  rewardFeature: number;
+
+  @Expose()
+  get title() {
+    return this.task.title;
+  }
+
+  @Expose()
+  get description() {
+    return this.task.description;
+  }
+
+  @Expose()
+  get featureId() {
+    return this.task.featureId;
+  }
 
   @Column({
     type: 'enum',

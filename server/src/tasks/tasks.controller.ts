@@ -1,42 +1,52 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { TasksService } from './tasks.service';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { TasksService, TaskStatus } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
+import { User as UserDecorator } from '../users/user.decorator';
+import { User } from '../users/enities/user.entity';
 
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
-  @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
-    return this.tasksService.create(createTaskDto);
+  @Post('create')
+  create(@UserDecorator() user: User, @Body() createTaskDto: CreateTaskDto) {
+    return this.tasksService.create(user, createTaskDto);
   }
 
   @Get()
-  findAll() {
-    return this.tasksService.findAll();
+  findAll(
+    @UserDecorator() user: User,
+    @Query('featureId') featureId: number,
+    @Query('status') status: TaskStatus,
+  ) {
+    return this.tasksService.findAll(
+      user,
+      Number.isNaN(featureId) ? undefined : featureId,
+      status,
+    );
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tasksService.findOne(+id);
+  @Get('progress')
+  async getCountInProgress(@UserDecorator() user: User) {
+    return {
+      countTasksInProgress: await this.tasksService.getCount(
+        user,
+        TaskStatus.IN_PROGRESS,
+      ),
+      countTasksCompleted: await this.tasksService.getCount(
+        user,
+        TaskStatus.DONE,
+      ),
+    };
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.tasksService.update(+id, updateTaskDto);
+  @Post(':id/fullfill')
+  fullfill(@UserDecorator() user: User, @Param('id') taskId: number) {
+    return this.tasksService.fullfill(user, taskId);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tasksService.remove(+id);
+  @Post(':id/confirm')
+  confirm(@UserDecorator() user: User, @Param('id') taskId: string) {
+    this.tasksService.confirm(user, taskId);
   }
 }

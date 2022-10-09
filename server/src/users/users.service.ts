@@ -24,7 +24,10 @@ export class UsersService {
     private featuresService: FeaturesService,
   ) {}
 
-  private prepareUser(user: User): User {
+  private prepareUser(user: User | null): User | null {
+    if (!user) {
+      return user;
+    }
     user.features = this.featuresService.getFeatures(user);
     user.level = this.featuresService.getLevel(user);
     return user;

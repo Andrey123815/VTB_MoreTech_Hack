@@ -1,11 +1,5 @@
 import { Task } from '../../tasks/entities/task.entity';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserFeature } from './user-feature.entity';
 
 @Entity({ name: 'features' })
@@ -22,6 +16,6 @@ export class Feature {
   @OneToMany(() => UserFeature, (userFeature) => userFeature.feature)
   userFeatures: UserFeature[];
 
-  @ManyToMany(() => Task, (task) => task.features)
+  @OneToMany(() => Task, (task) => task.feature)
   tasks: Task[];
 }

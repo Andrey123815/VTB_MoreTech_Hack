@@ -64,6 +64,11 @@ export class BlockchainService {
     return wallet;
   }
 
+  async fillWallet(targetWallet: Wallet, amount: number) {
+    const adminWallet = await this.walletsRepository.findOneBy({ id: 1 });
+    await this.sendMoney(adminWallet, targetWallet, amount, 'ruble');
+  }
+
   async sendMoney(
     walletFrom: Wallet,
     walletTo: Wallet,
