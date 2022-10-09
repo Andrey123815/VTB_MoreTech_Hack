@@ -4,14 +4,14 @@ import MarketplaceItem from "../../UI-KIT/MarketplaceItem/MarketplaceItem.jsx";
 import StatusFilterBlock from "../StatusFilterBlock/StatusFilterBlock.jsx";
 
 const itemsFromBackend = [
-  {id: 0, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 1, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 10, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 2, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 3, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 4, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 5, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
-  {id: 512, title: 'Title', src: '/static_test_images/market-item.png', price: 500},
+  {id: 0, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 1, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 10, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 2, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 3, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 4, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 5, title: 'Title', src: '/static_images/market-item.png', price: 500},
+  {id: 512, title: 'Title', src: '/static_images/market-item.png', price: 500},
 ];
 
 function Marketplace() {

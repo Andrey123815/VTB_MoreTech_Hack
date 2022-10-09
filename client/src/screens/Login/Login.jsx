@@ -15,7 +15,6 @@ function Login(props) {
     await userLogin({login, password}).then((user) => {
      props.setAuth(true);
      props.setUser(user.data);
-     console.log(user.data);
     })
   }
 

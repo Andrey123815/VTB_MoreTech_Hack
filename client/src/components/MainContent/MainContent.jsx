@@ -6,7 +6,7 @@ import Marketplace from "../Marketplace/Marketplace.jsx";
 import ProfilePopup from "../ProfilePopup/ProfilePopup.jsx";
 
 function MainContent() {
-  const isMarket = true;
+  const isMarket = false;
   return (
     <div className="main-content">
       <TeamMembersLine />

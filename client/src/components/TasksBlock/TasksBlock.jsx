@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import CategoryFilterBlock from "../CategoryFilterBlock/CategoryFilterBlock.jsx";
 import StatusFilterBlock from "../StatusFilterBlock/StatusFilterBlock.jsx";
 import Button from "../../UI-KIT/Button/Button.jsx";
 import Task from "../Task/Task.jsx";
 import './TasksBlock.scss';
 import {useGetCountTasksInProgressQuery, useGetTasksQuery} from "../../services/taskAPI.js";
+import {UserContext} from "../../App.jsx";
 
 const tasks = [
   {
@@ -81,8 +82,11 @@ const tasks = [
 ];
 
 function TasksBlock() {
-  const {data: counters} = useGetCountTasksInProgressQuery();
-  const {data: tasks} = useGetTasksQuery();
+  const user = useContext(UserContext);
+  console.log(user)
+
+  const {data: counters} = useGetCountTasksInProgressQuery(user.accessToken);
+  const {data: tasks} = useGetTasksQuery(user.accessToken);
   return (
     <div className="tasks-block">
       <div className="tasks-block__up-line">
@@ -92,7 +96,7 @@ function TasksBlock() {
       <div className="tasks-block__tasks">
         <CategoryFilterBlock/>
         <div className="tasks__tasks_items">
-          {tasks.map(task =>
+          {tasks && tasks.map(task =>
             <Task key={task.id} task={task}/>
           )}
         </div>

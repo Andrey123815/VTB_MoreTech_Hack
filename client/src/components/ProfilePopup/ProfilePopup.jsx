@@ -5,7 +5,6 @@ import ProfileCard from "../ProfileCard/ProfileCard.jsx";
 function ProfilePopup(props) {
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
-    console.log("CLICK", !open);
     setOpen(!open);
   }
   const onClose = () => {

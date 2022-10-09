@@ -5,13 +5,19 @@ export const taskApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
   endpoints: (builder) => ({
     getCountTasksInProgress: builder.query({
-      query: () => ({
-        url: '/task/progress',
+      query: (token) => ({
+        url: '/tasks/progress',
+        headers: {
+          'authorization': `Bearer ${token}`,
+        }
       }),
     }),
     getTasks: builder.query({
-      query: () => ({
+      query: (token) => ({
         url: '/tasks',
+        headers: {
+          'authorization': `Bearer ${token}`,
+        }
       }),
     }),
   }),

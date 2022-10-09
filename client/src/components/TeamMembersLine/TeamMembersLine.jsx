@@ -35,8 +35,6 @@ function TeamMembersLine(props) {
   const user = useContext(UserContext);
   const {data: members, error} = useGetTeamMembersQuery(user.accessToken);
 
-  console.log(members);
-
   return (
     <div className="team-members-line">
       {members && members.map(member =>
