@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { bcryptContants } from '../src/auth/constants';
 
-export class initValues1665246102071 implements MigrationInterface {
+export class initValues1665264941945 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
       `INSERT INTO teams VALUES (1, 'Sanvi', '/static/teams/manchester-city-big.png')`,

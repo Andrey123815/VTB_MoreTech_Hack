@@ -4,12 +4,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToMany,
-  ManyToMany,
-  JoinTable,
   ManyToOne,
 } from 'typeorm';
 import { UserTask } from './user-task.entity';
 import { User } from '../../users/enities/user.entity';
+import { Exclude } from 'class-transformer';
 
 export enum TaskCreationStatus {
   CREATED = 'created',
@@ -31,19 +30,18 @@ export class Task {
   @Column('int')
   rewardCoins: number;
 
-  @Column()
+  @Column('int')
   featureId: number;
 
-  @ManyToMany(() => Feature, (feature) => feature.tasks)
-  @JoinTable()
-  features: Feature[];
+  @Exclude()
+  @ManyToOne(() => Feature, (feature) => feature.tasks)
+  feature: Feature;
 
-  @Column('int')
-  rewardFeature: number;
-
+  @Exclude()
   @OneToMany(() => UserTask, (userTask) => userTask.task)
   userTasks: UserTask[];
 
+  @Exclude()
   @Column({
     type: 'enum',
     enum: TaskCreationStatus,
@@ -51,6 +49,7 @@ export class Task {
   })
   creationStatus: TaskCreationStatus;
 
+  @Exclude()
   @ManyToOne(() => User, (team) => team.createdTasks)
   creator: User;
 

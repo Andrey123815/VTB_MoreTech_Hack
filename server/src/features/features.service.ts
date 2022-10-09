@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../users/enities/user.entity';
@@ -30,6 +30,19 @@ export class FeaturesService {
     }
 
     return userFeatures;
+  }
+
+  async richFeature(user: User, featureId: number, amount: number) {
+    const userFeature = user.userFeatures.find(
+      (feature) => feature.featureId === featureId,
+    );
+
+    if (userFeature === undefined) {
+      throw new BadRequestException('There is no such feature');
+    }
+
+    userFeature.score += amount;
+    await this.usersFeaturesRepository.save(userFeature);
   }
 
   getFeatures(user: User): TUserFeatures {
