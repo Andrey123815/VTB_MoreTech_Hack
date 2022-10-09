@@ -1,0 +1,59 @@
+@use 'src/configurations/theme' as theme;
+
+.market-place__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 200px;
+  height: 220px;
+
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  text-align: center;
+  padding: 0 15px 15px 15px;
+  box-sizing: border-box;
+}
+
+.image__separator {
+  border-top: 1px solid theme.$hrLine;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  height: 52px;
+
+  &__title {
+    color: theme.$primary;
+    font-size: 18px;
+  }
+
+  &__price-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 52px;
+  }
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30px;
+
+  &__header {
+    color: #7A7A7A;
+    font-size: 12px;
+  }
+}
+
+.pay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}

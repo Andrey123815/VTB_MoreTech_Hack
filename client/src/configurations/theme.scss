@@ -1,0 +1,65 @@
+$_lightTheme: (
+  "primary": #5853DD,
+  "avatarBlock": #FAFDFF,
+  "taskConfirmBlock": #F2F2FD,
+  "userGratitudeBlock": #F2F2FD,
+  "innerTasksLabel": #F9F9FF,
+  "countTasksLabel": #F9F9FF,
+  "tooltip": #7773F1,
+  "userInfoLabel": #FFFFFF,
+  "activeFilterTabBackground": #E8E8FF,
+  "teamLeadAvatarBorder": #C4F750,
+  "isDoneTaskCounter": #C4F750,
+  "inProcessTaskCounter": #EAF750,
+  "hrLine": #9A9AFA,
+  "progressBar": #D9D9D9,
+  "progressLine": #C4F750
+);
+
+@function setThemeColors($theme) {
+  $appColors: (
+    "primary": map-get($theme, "primary"),
+    "avatarBlock": map-get($theme, "avatarBlock"),
+    "botChatBlock": map-get($theme, "botChatBlock"),
+    "slider": map-get($theme, "slider"),
+    "innerTasksLabel": map-get($theme, "innerTasksLabel"),
+    "countTasksLabel": map-get($theme, "countTasksLabel"),
+    "tooltip": map-get($theme, "tooltip"),
+    "userInfoLabel": map-get($theme, "userInfoLabel"),
+    "activeFilterTabBackground": map-get($theme, "activeFilterTabBackground"),
+    "teamLeadAvatarBorder": map-get($theme, "teamLeadAvatarBorder"),
+    "taskConfirmBlock": map-get($theme, "taskConfirmBlock"),
+    "userGratitudeBlock": map-get($theme, "userGratitudeBlock"),
+    "isDoneTaskCounter": map-get($theme, "isDoneTaskCounter"),
+    "inProcessTaskCounter": map-get($theme, "inProcessTaskCounter"),
+    "hrLine": map-get($theme, "hrLine"),
+    "progressBar": map-get($theme, "progressBar"),
+    "progressLine": map-get($theme, "progressLine")
+  );
+
+  @return $appColors;
+}
+
+$THEME: setThemeColors($_lightTheme);
+
+$primary: map-get($THEME, "primary");
+$avatarBlock: map-get($THEME, "avatarBlock");
+$BotChatBlock: map-get($THEME, "botChatBlock");
+$slider: map-get($THEME, "slider");
+$innerTasksLabel: map-get($THEME, "innerTasksLabel");
+$countTasksLabel: map-get($THEME, "countTasksLabel");
+$tooltip: map-get($THEME, "tooltip");
+$userInfoLabel: map-get($THEME, "userInfoLabel");
+$activeFilterTabBackground: map-get($THEME, "activeFilterTabBackground");
+$teamLeadAvatarBorder: map-get($THEME, "teamLeadAvatarBorder");
+$taskConfirmBlock: map-get($THEME, "taskConfirmBlock");
+$userGratitudeBlock: map-get($THEME, "userGratitudeBlock");
+$isDoneTaskCounter: map-get($THEME, "isDoneTaskCounter");
+$inProcessTaskCounter: map-get($THEME, "inProcessTaskCounter");
+$hrLine: map-get($THEME, "hrLine");
+$progressBar: map-get($THEME, "progressBar");
+$progressLine: map-get($THEME, "progressLine");
+
+//@function getColor($color) {
+//  @return map-get($THEME, $color);
+//}

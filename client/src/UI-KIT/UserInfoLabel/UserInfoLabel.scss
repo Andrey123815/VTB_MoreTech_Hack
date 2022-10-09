@@ -1,0 +1,11 @@
+@use 'src/configurations/theme.scss' as theme;
+
+.user-info-label {
+  width: max-content;
+  max-height: 50px;
+
+  padding: 2px 7px;
+  font-size: 14px;
+  background: theme.$userInfoLabel;
+  border-radius: 3px;
+}

@@ -1,0 +1,32 @@
+.shop__banner {
+  width: 295px;
+  height: 136px;
+  background: #FEFEFE;
+  box-shadow: 0px 0px 15px rgba(125, 125, 125, 0.15);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  span {
+    background: linear-gradient(179.19deg, #4843DC 0%, #203AEB 103.93%);
+    -webkit-background-clip: text;
+    width: 220px;
+    text-align: center;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  button {
+    width: 104px;
+    height: 30px;
+    background: #4843DC;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+    border: none;
+  }
+}
