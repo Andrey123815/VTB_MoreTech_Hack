@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './TeamMembersLine.scss';
 import TeamMemberAvatar from "../../UI-KIT/TeamMemberAvatar/TeamMemberAvatar.jsx";
+import {useGetTeamMembersQuery} from "../../services/teamAPI.js";
+import {UserContext} from "../../App.jsx";
 
 const teamMembers = [
   {
@@ -30,10 +32,15 @@ const teamMembers = [
 ]
 
 function TeamMembersLine(props) {
+  const user = useContext(UserContext);
+  const {data: members, error} = useGetTeamMembersQuery(user.accessToken);
+
+  console.log(members);
+
   return (
     <div className="team-members-line">
-      {teamMembers.map(({name, isTeamLead}) =>
-        <TeamMemberAvatar key={name} name={name} isTeamLead={isTeamLead} />
+      {members && members.map(member =>
+        <TeamMemberAvatar key={member.id} name={member.fullName} isTeamLead={member.role === 'teamlead'} />
       )}
     </div>
   );

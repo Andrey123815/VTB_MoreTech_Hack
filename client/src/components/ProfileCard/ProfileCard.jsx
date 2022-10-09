@@ -44,7 +44,7 @@ const headerByType = {
 
 function ProfileCard(props) {
   return (
-    <div className="profile-card">
+    <div className="profile-card" onClick={props.onClick}>
       <header>
         <div className="profile-card__user-info">
           <img className="profile-card__avatar" src="/currencies/ruble.svg" alt="Your Avatar"/>

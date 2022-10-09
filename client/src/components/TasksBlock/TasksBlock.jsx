@@ -4,6 +4,7 @@ import StatusFilterBlock from "../StatusFilterBlock/StatusFilterBlock.jsx";
 import Button from "../../UI-KIT/Button/Button.jsx";
 import Task from "../Task/Task.jsx";
 import './TasksBlock.scss';
+import {useGetCountTasksInProgressQuery, useGetTasksQuery} from "../../services/taskAPI.js";
 
 const tasks = [
   {
@@ -80,6 +81,8 @@ const tasks = [
 ];
 
 function TasksBlock() {
+  const {data: counters} = useGetCountTasksInProgressQuery();
+  const {data: tasks} = useGetTasksQuery();
   return (
     <div className="tasks-block">
       <div className="tasks-block__up-line">

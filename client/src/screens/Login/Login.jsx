@@ -14,7 +14,8 @@ function Login(props) {
   const handleClick = async () => {
     await userLogin({login, password}).then((user) => {
      props.setAuth(true);
-     props.setUser(user);
+     props.setUser(user.data);
+     console.log(user.data);
     })
   }
 

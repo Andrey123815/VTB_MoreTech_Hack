@@ -1,14 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
+export const teamApi = createApi({
+  reducerPath: 'teamApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
   endpoints: (builder) => ({
     getTeamMembers: builder.query({
-      query: (id) => ({
-        url: '/team',
-        params: {
-          id
+      query: (token) => ({
+        url: '/users/team',
+        headers: {
+          'authorization': `Bearer ${token}`,
         }
       }),
     }),
@@ -16,5 +16,5 @@ export const userApi = createApi({
 })
 
 export const {
-  useLoginUserMutation,
-} = userApi;
+  useGetTeamMembersQuery,
+} = teamApi;

@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="573928fe-1304-4266-8c04-64be645cc368" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/UI-KIT/Button/Button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/UI-KIT/Button/Button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Marketplace/Marketplace.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Marketplace/Marketplace.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/teamMembersAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/teamAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/UI-KIT/Popup/Popup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/UI-KIT/Popup/Popup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BotChatBlock/BotChatBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/taskAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ChatBotMessage/ChatBotMessage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CommandSendLine/CommandSendLine.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainContent/MainContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainContent/MainContent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ProfileCard/ProfileCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ProfileCard/ProfileCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ProfilePopup/ProfilePopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ProfilePopup/ProfilePopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ProfilePreviewBanner/ProfilePreviewBanner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ProfilePreviewBanner/ProfilePreviewBanner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ProfilePreviewBanner/ProfilePreviewBanner.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ProfilePreviewBanner/ProfilePreviewBanner.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/TasksBlock/TasksBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TasksBlock/TasksBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/TeamMembersLine/TeamMembersLine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TeamMembersLine/TeamMembersLine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/screens/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/teamAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/teamAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +51,8 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/andrey/Рабочий стол/VTB_MoreTech_Hack/client/src/assets",
     "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -79,7 +92,8 @@
       <workItem from="1665210660171" duration="8510000" />
       <workItem from="1665225607623" duration="259000" />
       <workItem from="1665226868116" duration="10522000" />
-      <workItem from="1665245120637" duration="22462000" />
+      <workItem from="1665245120637" duration="22990000" />
+      <workItem from="1665272641494" duration="6131000" />
     </task>
     <servers />
   </component>
